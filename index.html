@@ -38,13 +38,28 @@
                         <p class="name">Valentin Georges</p>
                         <p class="role">Junior DevOps Engineer • Disponible immédiatement</p>
 
-                        <div class="hero-buttons">
+                        <div class="contact-buttons">
                                 <a href="#contact" class="btn-outline btn-neon">Contact</a>
                                 <a href="https://www.linkedin.com/in/valentin-georges-14956a27b/" target="_blank"
                                         rel="noopener" class="btn-fill btn-neon">LinkedIn</a>
                         </div>
                 </section>
-
+                                        <button id="netrunner-toggle" style="
+                                                position: fixed;
+                                                bottom: 20px;
+                                                right: 20px;
+                                                background: #111;
+                                                color: #ff1a1a;
+                                                border: 1px solid #ff1a1a;
+                                                padding: 10px 16px;
+                                                border-radius: 8px;
+                                                font-family: 'Roboto Mono', monospace;
+                                                cursor: pointer;
+                                                z-index: 1000;
+                                                font-size: 0.85rem;
+                                                opacity: 0.6;
+                                                transition: opacity 0.3s;
+                                        ">Activer le mode NetRunner</button>
                 <!-- ABOUT -->
                 <section class="about" id="about">
                         <h2>À propos de moi</h2>
@@ -69,7 +84,7 @@
                                         </div>
                                         <div class="meta-item">
                                                 <span class="meta-key">Stack principale</span>
-                                                <span class="meta-value">Programmation object (Java, Python) •
+                                                <span class="meta-value">GitLab CI • 
                                                         Kubernetes • Docker • AWS</span>
                                         </div>
                                         <div class="meta-item">
@@ -116,7 +131,7 @@
                                         <h3>Orchestration & CI/CD</h3>
                                         <ul>
                                                 <li>Kubernetes — k3s, minikube</li>
-                                                <li>Docker — images optimisées, security scanning</li>
+                                                <li>Docker — images optimisées, Trivy</li>
                                                 <li>GitLab CI / Jenkins / GitHub Actions — CI/CD optimisée</li>
                                         </ul>
                                 </div>
@@ -137,7 +152,7 @@
                         <div class="project-grid">
                                 <article class="project-card" data-project="task-tracker">
                                         <h3>Task Tracker API</h3>
-                                        <p>Spring Boot • REST • Gradle • PostgreSQL</p>
+                                        <p>Spring Boot • REST • Gradle • Dockerfile</p>
                                         <a class="project-link" href="https://github.com/blixoww/task-tracker-api"
                                                 target="_blank" rel="noopener">Voir sur GitHub</a>
                                 </article>
@@ -166,17 +181,21 @@
                                 <article class="project-card">
                                         <h3>Projets personnels</h3>
                                         <span class="timeline-date">2025</span>
-                                        <p>Administration système Linux, mise en place CI/CD (GitLab CI et Jenkins), déploiements Kubernetes, virtualisation avec Proxmox, supervision avec Grafana et Prometheus.</p>
+                                        <p>Administration système Linux, mise en place CI/CD (GitLab CI et Jenkins),
+                                                déploiements Kubernetes, virtualisation avec Proxmox, supervision avec
+                                                Grafana et Prometheus.</p>
                                 </article>
                                 <article class="project-card">
                                         <h3>Alternant IT / Gouvernance</h3>
                                         <span class="timeline-date">2023 - 2024</span>
-                                        <p>Supervision de dispositifs de vidéoprotection, Pilotage de projets de mise en conformité web, Animation de sessions de formations.</p>
+                                        <p>Supervision de dispositifs de vidéoprotection, Pilotage de projets de mise en
+                                                conformité web, Animation de sessions de formations.</p>
                                 </article>
                                 <article class="project-card">
                                         <h3>Stagiaire Développeur</h3>
                                         <span class="timeline-date">2023</span>
-                                        <p>Développement d’une application Java, mise en place d'une base de données MySQL, gestion des dépendances et compilation avec Gradle.</p>
+                                        <p>Développement d’une application Java, mise en place d'une base de données
+                                                MySQL, gestion des dépendances et compilation avec Gradle.</p>
                                 </article>
                         </div>
                 </section>
@@ -226,7 +245,28 @@
                 </section>
 
                 <footer>
-                        © 2077 BLIXOWW — Night City Netrunner Division
+                                        <a href="boot.html" id="boot-launch-btn" style="
+                                                position: fixed;
+                                                bottom: 20px;
+                                                left: 20px;
+                                                background: linear-gradient(90deg, #ff1a1a 60%, #ff4c6e 100%);
+                                                color: #fff;
+                                                border: 2px solid #ff1a1a;
+                                                padding: 12px 20px;
+                                                border-radius: 40px;
+                                                font-family: 'Orbitron', monospace;
+                                                font-weight: 700;
+                                                text-shadow: 0 0 12px #ff1a1a, 0 0 24px #ff4c6e;
+                                                box-shadow: 0 0 18px #ff1a1a, 0 0 32px #ff4c6e;
+                                                cursor: pointer;
+                                                z-index: 1000;
+                                                font-size: 1rem;
+                                                opacity: 0.85;
+                                                transition: opacity 0.3s;
+                                                text-decoration: none;
+                                        ">Lancer la séquence Boot</a>
+
+                                        © 2077 BLIXOWW — Night City Netrunner Division
                 </footer>
         </div>
 

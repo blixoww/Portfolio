@@ -98,3 +98,14 @@ contactForm.addEventListener('submit', function(e) {
     contactForm.reset();
   }, 2200);
 });
+
+const netrunnerBtn = document.getElementById('netrunner-toggle');
+
+if (netrunnerBtn) {
+    netrunnerBtn.addEventListener('click', () => {
+        document.body.classList.toggle('netrunner-mode');
+        netrunnerBtn.textContent = document.body.classList.contains('netrunner-mode')
+            ? 'NetRunner Mode Actif'
+            : 'NetRunner Mode Inactif';
+    });
+}

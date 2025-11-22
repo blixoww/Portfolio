@@ -1,8 +1,8 @@
-const output      = document.getElementById('output');
-const typing      = document.getElementById('typing');
-const terminal    = document.getElementById('netrunner-terminal');
-const hexDisplay  = document.getElementById('daemon-hex');
-const blackout    = document.getElementById('blackout');
+const output = document.getElementById('output');
+const typing = document.getElementById('typing');
+const terminal = document.getElementById('netrunner-terminal');
+const hexDisplay = document.getElementById('daemon-hex');
+const blackout = document.getElementById('blackout');
 
 let cmdIndex = 0;
 
@@ -28,34 +28,58 @@ function log(line, isSuccess = false) {
   if (isSuccess) div.style.color = "#00ff00";
   output.appendChild(div);
   output.scrollTop = output.scrollHeight;
-
 }
 
 async function run() {
   if (cmdIndex >= commands.length) {
-      log("[+] SYSTEM COMPROMISED", true);
-      await sleep(400);
-      log("ACCESS GRANTED", true);
-    
-    // Terminal passe au vert
+    // Crée un div pour la dernière commande tapée
+    if (typing.textContent.trim() !== "") {
+      log(typing.textContent); // Ajoute la dernière commande tapée
+      typing.textContent = ""; // Vide le champ de typing
+    }
+
+    // Ajoute SYSTEM COMPROMISED
+    const compromisedDiv = document.createElement('div');
+    compromisedDiv.innerHTML = `<span class="prompt">netrunner@arasaka:~$</span> [+] SYSTEM COMPROMISED`;
+    compromisedDiv.style.color = "#00ff00";
+    compromisedDiv.style.textShadow = "0 0 14px #00ff00";
+    output.appendChild(compromisedDiv);
+
+    await sleep(400);
+
+    // Ajoute ACCESS GRANTED
+    const accessDiv = document.createElement('div');
+    accessDiv.innerHTML = `<span class="prompt">netrunner@arasaka:~$</span> ACCESS GRANTED`;
+    accessDiv.style.color = "#00ff00";
+    accessDiv.style.textShadow = "0 0 14px #00ff00";
+    output.appendChild(accessDiv);
+
+    // Terminal passe au vert et hex
     terminal.classList.add('success');
     hexDisplay.style.opacity = "0.9";
-    setInterval(() => {
-      const chars = "0123456789ABCDEF";
-      let s = ""; for (let i = 0; i < 64; i++) s += chars[Math.floor(Math.random() * 16)];
-      hexDisplay.textContent = s.match(/.{8}/g).join("  ");
-      hexDisplay.style.color = "#00ff00";
-    }, 80);
+
+    // Scroll automatique
+    output.scrollTop = output.scrollHeight;
 
     await sleep(3200);
-    document.getElementById('blackout').style.opacity = "1";
-    await sleep(1200);
-    location.href = "index.html";
-    return;
+      blackout.style.opacity = "1";
+      await sleep(1200);
+      // Vérifie si un paramètre "target" est présent dans l'URL
+      const params = new URLSearchParams(window.location.search);
+      const target = params.get('target');
+      if (target === 'recruteur') {
+        location.href = "recruiter.html";
+      } else {
+        location.href = "index.html";
+      }
+      return;
   }
 
+  // Typing de la commande
   await type(commands[cmdIndex], 32);
-  log(commands[cmdIndex]);
+  log(commands[cmdIndex]);  // Crée le div pour la commande
+  typing.textContent = "";  // Vide #typing après log
+
   if (cmdIndex === 2) hexDisplay.style.opacity = "0.7";
   cmdIndex++;
   await sleep(400 + Math.random() * 220);

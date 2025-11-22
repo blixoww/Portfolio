@@ -143,7 +143,7 @@ body {
 }
 
 /* Buttons */
-.hero-buttons {
+.contact-buttons {
     margin-top: 36px;
     display: flex;
     gap: 12px;
@@ -175,9 +175,9 @@ body {
 
 .btn-outline:hover {
     background: rgba(0,207,255,0.18);
-    color: #ff4a7d;
-    border-color: #ff4a7d;
-    box-shadow: 0 0 18px #00cfff, 0 0 32px #ff4a7d;
+    color: #00cfff;
+    border-color: #00cfff;
+    box-shadow: 0 0 18px #00cfff, 0 0 32px #00cfff;
 }
 
 .btn-fill {
@@ -273,6 +273,12 @@ h2 {
     opacity: 0.9;
 }
 
+.netrunner-mode .skill-icons img:hover {
+    filter: drop-shadow(0 0 14px #ff1a1a) brightness(1.1);
+    opacity: 0.95;
+    transition: .3s;
+}
+
 .detailed-skills {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -342,7 +348,6 @@ h2 {
 }
 
 /* EXPERIENCE */
-
 .timeline-card {
     background: rgba(10, 20, 50, 0.45);
     border: 1px solid rgba(0,255,255,0.10);
@@ -369,7 +374,6 @@ h2 {
 
 /* CERTIFICATIONS */
 .cert-grid { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
-/* Les .cert ne sont plus utilisées, harmonisation via .project-card */
 
 /* CONTACT */
 .contact form {
@@ -438,3 +442,119 @@ footer {
     .summary-content { flex-direction: column; gap: 18px; }
     .avatar-cyber { width: 80px; height: 80px; }
 }
+
+
+/* Netrunner Mode — style rouge/vert */
+.netrunner-mode {
+    --primary-color: #ff1a1a;
+    --accent-color: #ff4c6e;
+}
+
+.netrunner-mode .top-nav a {
+    color: #ff1a1a;
+    box-shadow: 0 0 0px #ff1a1a;
+}
+
+.netrunner-mode body,
+.netrunner-mode .scanlines {
+    background: #000;
+}
+
+.netrunner-mode #matrix {
+    filter: hue-rotate(180deg) brightness(1.2);
+}
+
+.netrunner-mode .top-nav a:hover {
+    background: rgba(255,26,26,0.18);
+    color: #ff1a1a;
+    box-shadow: 0 0 12px #ff1a1a;
+}
+
+.netrunner-mode .btn-fill:hover {
+    background: linear-gradient(90deg, #ff1a1a 60%, #ff4c6e 100%);
+    box-shadow: 0 0 32px #ff1a1a, 0 0 32px #ff4c6e;
+}
+
+.netrunner-mode .btn-fill.btn-neon {
+    background: linear-gradient(90deg, #ff1a1a 60%, #ff4c6e 100%);
+    color: #fff;
+    text-shadow: 0 0 12px #ff1a1a, 0 0 24px #ff4c6e;
+    box-shadow: 0 0 18px #ff1a1a, 0 0 32px #ff4c6e;
+    border: 2px solid #ff1a1a;
+}
+
+.netrunner-mode .btn-fill.btn-neon:hover {
+    background: linear-gradient(90deg, #ff4c6e 60%, #ff1a1a 100%);
+    color: #fff;
+    box-shadow: 0 0 40px #ff1a1a, 0 0 40px #ff4c6e;
+    border-color: #ff4c6e;
+}
+
+.netrunner-mode .btn-outline:hover
+{
+    background: rgba(255,26,26,0.18);
+    color: #ff1a1a;
+    border-color: #ff1a1a;
+    box-shadow: 0 0 18px #ff1a1a, 0 0 32px #ff1a1a;
+}
+
+.netrunner-mode .container {
+    color: #ff4c6e;
+}
+
+.netrunner-mode .scanlines {
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255,0,0,0.05) 0px,
+        rgba(255,0,0,0.05) 2px,
+        transparent 2px,
+        transparent 6px
+    );
+}
+
+.netrunner-mode .about-meta {
+    border: 2px solid #ff1a1a;
+    box-shadow: 0 0 24px #ff1a1a44, 0 0 32px #ff4c6e22;
+}
+
+.netrunner-mode .meta-item {
+    border-bottom: 1px solid #ff4c6e44;
+}
+
+.netrunner-mode .meta-key {
+    color: #ff1a1a;
+}
+
+.netrunner-mode .logo-neon {
+    color: #ff1a1a;
+    text-shadow: 0 0 12px #ff1a1a;
+}
+
+.netrunner-mode .matrix-rain {
+    color: #ff1a1a;
+    text-shadow: 0 0 8px #ff1a1a, 0 0 20px #ff4c6e;
+}
+
+.netrunner-mode .hud-minimal {
+    border-color: #ff1a1a;
+    box-shadow: 0 0 40px #ff1a1a44, 0 4px 20px rgba(255,26,26,0.08);
+}
+
+.netrunner-mode .btn-outline,
+.netrunner-mode .contact-buttons a {
+    color: #ff1a1a;
+    border-color: #ff1a1a;
+    box-shadow: 0 0 12px #ff1a1a;
+}
+
+.netrunner-mode .project-card,
+.netrunner-mode .skill-column ul,
+.netrunner-mode .about-text ul {
+    border-color: #ff1a1a;
+    color: #ff4c6e;
+}
+
+.netrunner-mode .main-title {
+    text-shadow: 0 0 40px #ff1a1a, 0 0 80px #ff4c6e;
+}
+
