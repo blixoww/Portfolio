@@ -354,61 +354,6 @@ body {
   }
 }
 
-/* === WARNING ARASAKA (UNIQUEMENT À LA FIN) === */
-#arasaka-warning {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, .97);
-  z-index: 60;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 1.2s;
-}
-
-#arasaka-warning.active {
-  opacity: 1;
-  pointer-events: all;
-}
-
-.warning-header {
-  font-size: 3.2rem;
-  color: #f00;
-  text-shadow: 0 0 50px #f00;
-  letter-spacing: 8px;
-  animation: warning-flash 0.6s infinite;
-}
-
-.warning-text {
-  font-size: 1.5rem;
-  color: #ff4444;
-  text-shadow: 0 0 25px #f00;
-  margin: 30px 0;
-}
-
-.warning-countdown {
-  font-size: 2.2rem;
-  color: #00eaff;
-  text-shadow: 0 0 35px #00eaff;
-  animation: countdown 1s infinite;
-}
-
-@keyframes warning-flash {
-  50% {
-    opacity: .3;
-    transform: scale(1.02)
-  }
-}
-
-@keyframes countdown {
-  50% {
-    opacity: .5
-  }
-}
-
 /* === GLITCH TEXT === */
 .glitch {
   position: relative;
