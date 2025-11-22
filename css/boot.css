@@ -1,0 +1,469 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+  color: #00eaff;
+  font-family: 'Share Tech Mono', monospace;
+}
+
+body {
+  position: relative;
+}
+
+/* === CRT LAYERS === */
+.crt {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.scanlines {
+  background: repeating-linear-gradient(0deg, rgba(255, 0, 68, .12)0px, transparent 2px, transparent 4px, rgba(255, 0, 68, .12)6px);
+  animation: scan 4s linear infinite;
+  mix-blend-mode: overlay;
+  z-index: 10;
+}
+
+.vhs-noise {
+  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><rect width="4" height="4" fill="%23000"/><rect width="2" height="2" fill="%23fff" opacity="0.08"/></svg>')0 0/4px 4px;
+  animation: noise .08s steps(10) infinite;
+  opacity: .4;
+  z-index: 9;
+}
+
+.chromatic {
+  background: linear-gradient(45deg, transparent 49%, rgba(255, 0, 255, .03)50%, transparent 51%), linear-gradient(-45deg, transparent 49%, rgba(0, 255, 255, .03)50%, transparent 51%);
+  background-size: 6px 6px;
+  animation: chromatic 2s infinite;
+  z-index: 8;
+}
+
+.code-rain {
+  overflow: hidden;
+  z-index: 7;
+}
+
+.code-rain::before,
+.code-rain::after {
+  content: "0101 1010 0011 1100 0111 1000 1111 0000 1010 0101 1100 0011 1001 0110 1111 0000";
+  position: absolute;
+  top: -100%;
+  width: 100%;
+  font-size: 10px;
+  letter-spacing: 10px;
+  color: rgba(0, 234, 255, .18);
+  text-shadow: 0 0 12px #00eaff;
+  white-space: nowrap;
+}
+
+.code-rain::before {
+  animation: rain 18s linear infinite;
+}
+
+.code-rain::after {
+  animation: rain 25s linear infinite reverse;
+  opacity: .1;
+  top: -60%;
+}
+
+.hologram-grid {
+  background: repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(0, 255, 255, .04)30px, rgba(0, 255, 255, .04)31px), repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(0, 255, 255, .04)30px, rgba(0, 255, 255, .04)31px);
+  animation: pulse-grid 8s infinite;
+  z-index: 6;
+}
+
+/* GLACE BIEN PLUS VISIBLE */
+.ice-cracks {
+  background:
+    radial-gradient(circle at 25% 75%, rgba(255, 0, 68, .4) 0%, transparent 50%),
+    radial-gradient(circle at 75% 25%, rgba(255, 0, 68, .35) 0%, transparent 50%),
+    repeating-linear-gradient(45deg, transparent 0px, rgba(255, 0, 68, .12) 3px, transparent 6px);
+  animation: ice-pulse 3s ease-in-out infinite;
+  opacity: 0.8;
+  z-index: 5;
+}
+
+@keyframes ice-pulse {
+  0% {
+    opacity: .6
+  }
+
+  50% {
+    opacity: .95
+  }
+
+  100% {
+    opacity: .6
+  }
+}
+
+.distortion-field {
+  animation: distort 4s infinite;
+  z-index: 4;
+}
+
+.camera-shake {
+  animation: shake .25s infinite paused;
+  z-index: 11;
+}
+
+.blackout {
+  background: #000;
+  opacity: 0;
+  z-index: 20;
+  transition: opacity 2s;
+}
+
+/* === ICE PARTICLES === */
+.ice-particles {
+  opacity: 0;
+  z-index: 12;
+  background: radial-gradient(circle, rgba(255, 0, 68, .15) 1px, transparent 1px);
+  background-size: 15px 15px;
+  animation: particles 2s infinite paused;
+}
+
+@keyframes particles {
+  0% {
+    background-position: 0 0
+  }
+
+  100% {
+    background-position: 100px 100px
+  }
+}
+
+/* === ANIMATIONS === */
+@keyframes scan {
+  0% {
+    transform: translateY(-100%)
+  }
+
+  100% {
+    transform: translateY(100%)
+  }
+}
+
+@keyframes noise {
+  from {
+    transform: translate(0)
+  }
+
+  to {
+    transform: translate(4px, 4px)
+  }
+}
+
+@keyframes chromatic {
+
+  0%,
+  100% {
+    transform: translate(0)
+  }
+
+  20% {
+    transform: translate(-3px, 3px)
+  }
+
+  40% {
+    transform: translate(3px, -3px)
+  }
+}
+
+@keyframes rain {
+  from {
+    transform: translateY(-100%)
+  }
+
+  to {
+    transform: translateY(100vh)
+  }
+}
+
+@keyframes pulse-grid {
+  50% {
+    opacity: .6
+  }
+}
+
+@keyframes distort {
+
+  0%,
+  100% {
+    transform: rotateX(0)
+  }
+
+  50% {
+    transform: rotateX(1deg) rotateY(1deg)
+  }
+}
+
+@keyframes shake {
+
+  0%,
+  100% {
+    transform: translate(0)
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translate(-4px, 4px)
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translate(4px, -4px)
+  }
+}
+
+/* === TERMINAL NETRUNNER === */
+#netrunner-terminal {
+  position: absolute;
+  top: 25px;
+  left: 30px;
+  width: 85%;
+  max-width: 950px;
+  z-index: 30;
+  font-size: 1.35rem;
+  line-height: 1.55;
+  text-shadow: 0 0 12px #00eaff;
+}
+
+.header {
+  margin-bottom: 15px;
+  font-size: 1.75rem;
+  letter-spacing: 3px;
+}
+
+#output,
+#input-line,
+#daemon-hex {
+  margin: 6px 0;
+}
+
+.prompt {
+  color: #0f0;
+}
+
+.cursor {
+  animation: blink .8s infinite;
+  font-weight: bold;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0
+  }
+}
+
+/* Hex statique */
+#daemon-hex {
+  font-size: 0.9rem;
+  color: rgba(0, 255, 255, 0.75);
+  letter-spacing: 2px;
+  margin: 12px 0;
+  opacity: 0;
+  animation: none !important; 
+  text-align: center;
+}
+
+@keyframes hex-flow {
+  0% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* === GLYPHS FLOTTANTS === */
+#glyphs {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.glyph {
+  position: absolute;
+  font-size: 2.2rem;
+  color: rgba(0, 255, 255, .12);
+  text-shadow: 0 0 25px #00eaff;
+  animation: float 18s infinite linear;
+  opacity: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 1;
+  }
+
+  92% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-150px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* === FINAL MESSAGES === */
+#final-breach {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3.8rem;
+  color: #f00;
+  text-shadow: 0 0 70px #f00;
+  letter-spacing: 10px;
+  opacity: 0;
+  z-index: 40;
+  transition: opacity 1.5s ease-in-out; 
+  pointer-events: none;
+}
+
+#final-breach.active {
+  opacity: 1;
+  animation: pulse-red 2.2s infinite; /* ← maintenant elle ne tourne QUE quand .active */
+}
+
+@keyframes pulse-red {
+  50% {
+    opacity: .75;
+    transform: translate(-50%, -50%) scale(0.98)
+  }
+}
+
+/* === WARNING ARASAKA (UNIQUEMENT À LA FIN) === */
+#arasaka-warning {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .97);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.2s;
+}
+
+#arasaka-warning.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.warning-header {
+  font-size: 3.2rem;
+  color: #f00;
+  text-shadow: 0 0 50px #f00;
+  letter-spacing: 8px;
+  animation: warning-flash 0.6s infinite;
+}
+
+.warning-text {
+  font-size: 1.5rem;
+  color: #ff4444;
+  text-shadow: 0 0 25px #f00;
+  margin: 30px 0;
+}
+
+.warning-countdown {
+  font-size: 2.2rem;
+  color: #00eaff;
+  text-shadow: 0 0 35px #00eaff;
+  animation: countdown 1s infinite;
+}
+
+@keyframes warning-flash {
+  50% {
+    opacity: .3;
+    transform: scale(1.02)
+  }
+}
+
+@keyframes countdown {
+  50% {
+    opacity: .5
+  }
+}
+
+/* === GLITCH TEXT === */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.glitch::before {
+  animation: glitch1 0.8s infinite;
+  color: #ff00ff;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch::after {
+  animation: glitch2 0.9s infinite;
+  color: #00ffff;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch1 {
+
+  0%,
+  100% {
+    transform: translate(0)
+  }
+
+  20% {
+    transform: translate(-5px, 5px)
+  }
+
+  80% {
+    transform: translate(5px, -5px)
+  }
+}
+
+@keyframes glitch2 {
+
+  0%,
+  100% {
+    transform: translate(0)
+  }
+
+  30% {
+    transform: translate(5px, -5px)
+  }
+
+  70% {
+    transform: translate(-5px, 5px)
+  }
+}
