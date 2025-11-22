@@ -1,4 +1,3 @@
-// === ELEMENTS ===
 const output          = document.getElementById('output');
 const typing          = document.getElementById('typing');
 const finalBreach     = document.getElementById('final-breach');
@@ -9,126 +8,82 @@ const hexDisplay      = document.getElementById('daemon-hex');
 const iceParticles    = document.getElementById('ice-particles');
 const glyphsContainer = document.getElementById('glyphs');
 
-// === COMMANDS ===
+let cmdIndex = 0;
+
 const goodCmds = [
   "netscan --target arasaka_corpnet --verbose",
+  "iceprobe --type blackwall --force",
   "daemon_inject --payload v9.77 --root",
-  "quickhack --upload breach_protocol.exe",
-  "system_override --privilege admin",
+  "flatline --countermeasures all --silent"
 ];
 
-const badCmds = [
-  null,
-  null,
-  "daemon_injeckt --payloaad v9.77 --root",   
-  null,
-];
+const badCmds = [null, null, "daemon_injeckt --payloaad v9.77 --root", null];
 
-// === STATE ===
-let cmdIndex = 0;
-let hexInterval = null;
-let finalTriggered = false;
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-function sleep(ms){ return new Promise(r => setTimeout(r, ms)); }
-
-function rand(min, max){ return Math.floor(min + Math.random() * (max - min)); }
-
-function typeString(str, minDelay=35, maxDelay=90){
-  return new Promise(resolve=>{
-    let i = 0;
-    function step(){
-      i++;
-      typing.textContent = str.slice(0, i);
-      if(i < str.length){
-        setTimeout(step, rand(minDelay, maxDelay));
-      } else {
-        resolve();
-      }
-    }
-    step();
-  });
+async function type(text, speed = 45) {
+  for (let i = 0; i <= text.length; i++) {
+    typing.textContent = text.slice(0, i);
+    await sleep(speed + Math.random() * 35);
+  }
 }
 
-function deleteString(minDelay=25, maxDelay=60){
-  return new Promise(resolve=>{
-    let i = typing.textContent.length;
-    function step(){
-      i--;
-      typing.textContent = typing.textContent.slice(0, i);
-      if(i > 0){
-        setTimeout(step, rand(minDelay, maxDelay));
-      } else {
-        resolve();
-      }
-    }
-    if(i === 0) resolve();
-    else step();
-  });
+async function del() {
+  while (typing.textContent.length > 0) {
+    typing.textContent = typing.textContent.slice(0, -1);
+    await sleep(25 + Math.random() * 25);
+  }
 }
 
-function pushLog(text){
+function log(cmd) {
   const line = document.createElement('div');
   line.className = 'line';
-  line.innerHTML = `<span class="prompt">netrunner@arasaka:~$</span> ${text}`;
+  line.innerHTML = `<span class="prompt">netrunner@arasaka:~$</span> ${cmd}`;
   output.appendChild(line);
   output.scrollTop = output.scrollHeight;
 }
 
-function startHexStream(){
-  if(hexInterval) return;
-  hexDisplay.style.opacity = "0.8";
-  function genHex(){
-    const chars = "0123456789ABCDEF";
-    let s = "";
-    for(let i=0;i<120;i++) s += chars[Math.floor(Math.random()*16)];
-    hexDisplay.textContent = s.match(/.{8}/g).join("  ");
-  }
-  genHex();
-  hexInterval = setInterval(genHex, 1500 + Math.random()*900);
-}
-
-// === FLOW PRINCIPAL (async) ===
-async function processCommand(index){
-  if(index >= goodCmds.length){
-    if(!finalTriggered){
-      finalTriggered = true;
-      startFinalSequence();
-    }
+async function run() {
+  if (cmdIndex >= goodCmds.length) {
+    startFinalSequence();
     return;
   }
 
-  const hasBad = !!badCmds[index];
-  if(hasBad){
-    await typeString(badCmds[index]);
-    await sleep(250 + Math.random()*300);
-    await deleteString();
-    await sleep(150 + Math.random()*200);
+  if (badCmds[cmdIndex]) {
+    await type(badCmds[cmdIndex]);
+    await sleep(280);
+    await del();
+    await sleep(180);
   }
 
-  await typeString(goodCmds[index]);
-  await sleep(120);
-  pushLog(goodCmds[index]);
+  await type(goodCmds[cmdIndex], 38);
+  log(goodCmds[cmdIndex]);
 
-  if(index === 2) startHexStream();
+  if (cmdIndex === 2) {
+    hexDisplay.style.opacity = "0.9";
+    setInterval(() => {
+      const chars = "0123456789ABCDEF";
+      let s = "";
+      for (let i = 0; i < 120; i++) s += chars[Math.floor(Math.random() * 16)];
+      hexDisplay.textContent = s.match(/.{8}/g).join("  ");
+    }, 110);
+  }
 
-  typing.textContent = "";
-  cmdIndex = index + 1;
-  await sleep(700 + Math.random()*700);
-  processCommand(cmdIndex);
+  cmdIndex++;
+  await sleep(500 + Math.random() * 300);
+  run();
 }
 
-// === FINAL SEQUENCE ===
-function startFinalSequence(){
-  // glyphs
+function startFinalSequence() {
   const glyphs = "▓▒░│┤╡╢╖╕╣║╗╝╜╛┐└┴┬├─┼╞╟╚╔╩╦╠═╬╧╨╤╥╙╘╒╓╫╪┘┌█▄▌▐▀αβγΔΘλπΣΩ";
-  for(let i=0;i<60;i++){
+  for (let i = 0; i < 60; i++) {
     const g = document.createElement('div');
     g.className = 'glyph';
-    g.textContent = glyphs[Math.floor(Math.random()*glyphs.length)];
-    g.style.left = Math.random()*100 + "%";
-    g.style.top  = Math.random()*100 + "%";
-    g.style.animationDelay = Math.random()*5 + "s";
-    g.style.animationDuration = (10 + Math.random()*12) + "s";
+    g.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+    g.style.left = Math.random() * 100 + "%";
+    g.style.top = Math.random() * 100 + "%";
+    g.style.animationDelay = Math.random() * 1.5 + "s";
+    g.style.animationDuration = (6 + Math.random() * 6) + "s";
     glyphsContainer.appendChild(g);
   }
 
@@ -136,16 +91,21 @@ function startFinalSequence(){
   iceParticles.style.animationPlayState = "running";
   shake.style.animationPlayState = "running";
 
-  setTimeout(()=>{
+  setTimeout(() => {
     finalBreach.classList.add("active");
-    finalBreach.style.opacity = "1";
-      setTimeout(()=>{
-        blackout.style.opacity = "1";
-        setTimeout(()=> location.href = "index.html", 3000);
-      }, 11000);
+    warning.classList +=" active";
 
-    }, 2000);
+    setTimeout(() => {
+      blackout.style.opacity = "1";
+      setTimeout(() => location.href = "index.html", 1800); 
+    }, 2200); 
+  }, 800);
 }
 
-// === START ===
-setTimeout(()=> processCommand(0), 1200);
+// === SKIP INTRO BUTTON ===
+document.getElementById('skip-btn').addEventListener('click', () => {
+  document.getElementById('blackout').style.opacity = '1';
+  setTimeout(() => location.href = "index.html", 800);
+});
+
+setTimeout(run, 900);

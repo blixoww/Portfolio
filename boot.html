@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
   <link rel="stylesheet" href="css/boot.css">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
   <!-- COUCHES VISUELLES -->
@@ -24,7 +26,7 @@
   <!-- TERMINAL NETRUNNER -->
   <div id="netrunner-terminal">
     <div class="header">
-      <span class="glitch" data-text="BLIXOWW://NEURAL_OS v2.077">BLIXOWW://NEURAL_OS v2.077</span>
+      <span>BLIXOWW://NEURAL_OS v2.077</span>
     </div>
     <div id="output"></div>
     <div id="daemon-hex"></div>
@@ -36,15 +38,20 @@
 
   <!-- GLYPHS + MESSAGES FINAUX -->
   <div id="glyphs"></div>
-  <div id="final-breach">BREACH COMPLETE — SYSTEM FLATLINED</div>
-
-  <!-- WARNING ARASAKA → UNIQUEMENT À LA FIN -->
+  <div id="final-breach">
+    <span class="line1">BREACH COMPLETE</span>
+    <span class="line2">SYSTEM FLATLINED</span>
+  </div>
+  <!-- WARNING ARASAKA -->
   <div id="arasaka-warning">
     <div class="warning-header">ARASAKA SECURITY ALERT</div>
     <div class="warning-text">INTRUSION DETECTED — BREACH PROTOCOL VIOLATION</div>
-    <div class="warning-countdown">TRACE INITIATED: 00:15</div>
   </div>
+
+  <!-- SKIP BUTTON -->
+  <div id="skip-btn">skip intro</div>
 
   <script src="js/boot.js"></script>
 </body>
+
 </html>
