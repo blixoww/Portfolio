@@ -1,420 +1,185 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* ================================================= */
+/*   BLIXOWW — BREACH PROTOCOL v10 — FINAL PERFECTION   */
+/*   Tout aligné, tout propre, tout parfait            */
+/* ================================================= */
 
-html,
-body {
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html, body {
   height: 100%;
   overflow: hidden;
   background: #000;
-  color: #00eaff;
+  color: #db1c1c;
   font-family: 'Share Tech Mono', monospace;
 }
 
-body {
-  position: relative;
-}
-
-/* === CRT LAYERS === */
-.crt {
+/* Scanlines discrètes */
+.scanlines {
   position: fixed;
   inset: 0;
   pointer-events: none;
-}
-
-.scanlines {
-  background: repeating-linear-gradient(0deg, rgba(255, 0, 68, .12)0px, transparent 2px, transparent 4px, rgba(255, 0, 68, .12)6px);
-  animation: scan 4s linear infinite;
+  z-index: 1;
+  background: repeating-linear-gradient(0deg, rgba(255,26,87,.06) 0px, rgba(255,26,87,.06) 2px, transparent 2px, transparent 6px);
+  opacity: 0.35;
   mix-blend-mode: overlay;
-  z-index: 10;
+  transition: background 1.5s;
+}
+.success .scanlines {
+  background: repeating-linear-gradient(0deg, rgba(0,255,150,.05) 0px, rgba(0,255,150,.05) 2px, transparent 2px, transparent 6px);
 }
 
-.vhs-noise {
-  background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="4" height="4"><rect width="4" height="4" fill="%23000"/><rect width="2" height="2" fill="%23fff" opacity="0.08"/></svg>')0 0/4px 4px;
-  animation: noise .08s steps(10) infinite;
-  opacity: .4;
-  z-index: 9;
-}
-
-.chromatic {
-  background: linear-gradient(45deg, transparent 49%, rgba(255, 0, 255, .03)50%, transparent 51%), linear-gradient(-45deg, transparent 49%, rgba(0, 255, 255, .03)50%, transparent 51%);
-  background-size: 6px 6px;
-  animation: chromatic 2s infinite;
-  z-index: 8;
-}
-
-.code-rain {
-  overflow: hidden;
-  z-index: 7;
-}
-
-.code-rain::before,
-.code-rain::after {
-  content: "0101 1010 0011 1100 0111 1000 1111 0000 1010 0101 1100 0011 1001 0110 1111 0000";
-  position: absolute;
-  top: -100%;
-  width: 100%;
-  font-size: 10px;
-  letter-spacing: 10px;
-  color: rgba(0, 234, 255, .18);
-  text-shadow: 0 0 12px #00eaff;
-  white-space: nowrap;
-}
-
-.code-rain::before {
-  animation: rain 18s linear infinite;
-}
-
-.code-rain::after {
-  animation: rain 25s linear infinite reverse;
-  opacity: .1;
-  top: -60%;
-}
-
-.hologram-grid {
-  background: repeating-linear-gradient(0deg, transparent, transparent 30px, rgba(0, 255, 255, .04)30px, rgba(0, 255, 255, .04)31px), repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(0, 255, 255, .04)30px, rgba(0, 255, 255, .04)31px);
-  animation: pulse-grid 8s infinite;
-  z-index: 6;
-}
-
-/* GLACE BIEN PLUS VISIBLE */
-.ice-cracks {
-  background:
-    radial-gradient(circle at 25% 75%, rgba(255, 0, 68, .4) 0%, transparent 50%),
-    radial-gradient(circle at 75% 25%, rgba(255, 0, 68, .35) 0%, transparent 50%),
-    repeating-linear-gradient(45deg, transparent 0px, rgba(255, 0, 68, .12) 3px, transparent 6px);
-  animation: ice-pulse 3s ease-in-out infinite;
-  opacity: 0.8;
-  z-index: 5;
-}
-
-@keyframes ice-pulse {
-  0% {
-    opacity: .6
-  }
-
-  50% {
-    opacity: .95
-  }
-
-  100% {
-    opacity: .6
-  }
-}
-
-.distortion-field {
-  animation: distort 4s infinite;
-  z-index: 4;
-}
-
-.camera-shake {
-  animation: shake .25s infinite paused;
-  z-index: 11;
-}
-
-.blackout {
-  background: #000;
-  opacity: 0;
-  z-index: 20;
-  transition: opacity 2s;
-}
-
-/* === ICE PARTICLES === */
-.ice-particles {
-  opacity: 0;
-  z-index: 12;
-  background: radial-gradient(circle, rgba(255, 0, 68, .15) 1px, transparent 1px);
-  background-size: 15px 15px;
-  animation: particles 2s infinite paused;
-}
-
-@keyframes particles {
-  0% {
-    background-position: 0 0
-  }
-
-  100% {
-    background-position: 100px 100px
-  }
-}
-
-/* === ANIMATIONS === */
-@keyframes scan {
-  0% {
-    transform: translateY(-100%)
-  }
-
-  100% {
-    transform: translateY(100%)
-  }
-}
-
-@keyframes noise {
-  from {
-    transform: translate(0)
-  }
-
-  to {
-    transform: translate(4px, 4px)
-  }
-}
-
-@keyframes chromatic {
-
-  0%,
-  100% {
-    transform: translate(0)
-  }
-
-  20% {
-    transform: translate(-3px, 3px)
-  }
-
-  40% {
-    transform: translate(3px, -3px)
-  }
-}
-
-@keyframes rain {
-  from {
-    transform: translateY(-100%)
-  }
-
-  to {
-    transform: translateY(100vh)
-  }
-}
-
-@keyframes pulse-grid {
-  50% {
-    opacity: .6
-  }
-}
-
-@keyframes distort {
-
-  0%,
-  100% {
-    transform: rotateX(0)
-  }
-
-  50% {
-    transform: rotateX(1deg) rotateY(1deg)
-  }
-}
-
-@keyframes shake {
-
-  0%,
-  100% {
-    transform: translate(0)
-  }
-
-  10%,
-  30%,
-  50%,
-  70%,
-  90% {
-    transform: translate(-4px, 4px)
-  }
-
-  20%,
-  40%,
-  60%,
-  80% {
-    transform: translate(4px, -4px)
-  }
-}
-
-/* === TERMINAL CENTRÉ, COMMANDE BIEN AU MILIEU, BORDS PROPRES === */
+/* Terminal */
 #netrunner-terminal {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 88%;
-  max-width: 1350px;
-  padding: 40px 50px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 3px solid #00eaff;
-  border-radius: 8px;
-  box-shadow: 
-    0 0 60px rgba(0, 234, 255, 0.4),
-    inset 0 0 40px rgba(0, 234, 255, 0.1);
+  width: 92%;
+  max-width: 1500px;
+  padding: 70px 90px;
+  background: rgba(8,0,4,0.98);
+  border: 2px solid #db1c1c;
+  border-radius: 14px;
+  box-shadow: 0 0 90px rgba(204,0,51,0.45);
+  backdrop-filter: blur(12px);
   z-index: 30;
-  font-size: 1.5rem;
-  line-height: 1.8;
-  text-shadow: 0 0 12px #00eaff;
+  opacity: 0;
+  animation: fadeIn 1.8s 0.6s ease-out forwards;
+}
+@keyframes fadeIn { to { opacity: 1; } }
+
+#netrunner-terminal.success {
+  border-color: #00ff88;
+  box-shadow: 0 0 120px rgba(0,255,136,0.5);
+  color: #88ffaa;
 }
 
-/* Titre en haut bien centré */
+/* Header */
 .header {
   text-align: center;
-  margin-bottom: 35px;
-  font-size: 2.4rem;
-  letter-spacing: 8px;
+  margin-bottom: 60px;
+  font-size: 3.8rem;
+  letter-spacing: 18px;
+  background: linear-gradient(90deg, #db1c1c, #00ffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 40px #db1c1c;
 }
 
-/* Les lignes de commandes bien alignées à gauche mais dans un cadre centré */
-#output,
-#input-line,
-#daemon-hex {
-  margin: 8px 0;
-  text-align: left;
+/* Texte */
+#output > div, #input-line {
+  margin: 12px 0;
+  font-size: 1.55rem;
+  color: #cecece;
+  text-shadow: 0 0 10px rgba(87, 86, 86, 0.4);
 }
+.success #output > div, .success #input-line { color: #88ffaa; text-shadow: 0 0 14px #00ff88; }
 
-.prompt {
-  color: #0f0;
-}
+.prompt { color: #db1c1c; font-weight: bold; }
+.success .prompt { color: #00ff88; }
 
 .cursor {
-  animation: blink .8s infinite;
-  font-weight: bold;
+  display: inline-block;
+  width: 13px; height: 2rem;
+  background: #474747;
+  margin-left: 6px;
+  animation: blink 1s infinite;
 }
+.success .cursor { background: #00ff88; }
+@keyframes blink { 50% { opacity: 0; } }
 
-@keyframes blink {
-  50% {
-    opacity: 0
-  }
-}
-
-/* Hex statique */
-#daemon-hex {
-  font-size: 0.9rem;
-  color: rgba(0, 255, 255, 0.75);
-  letter-spacing: 2px;
-  margin: 12px 0;
+/* Warning Arasaka */
+#arasaka-warning {
+  position: fixed;
+  top: 20px;
+  left: 20px;      /* ← maintenant à gauche */
+  right: auto;
+  width: auto;
+  max-width: 460px; 
+  padding: 10px 18px;
+  background: rgba(50, 0, 0, 0.35); 
+  border: 1px solid #db1c1c;       
+  border-radius: 6px;
+  color: #ff4c6e;                  
+  font-size: 0.92rem;
+  text-align: left;                
+  z-index: 50;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 12px rgba(255, 40, 80, 0.35);
   opacity: 0;
-  animation: none !important; 
-  text-align: center;
+  transition: opacity 1.5s;
 }
 
-@keyframes hex-flow {
-  0% {
-    transform: translateX(100%);
-  }
 
-  100% {
-    transform: translateX(-100%);
-  }
+/* Skip — bas droite, toujours bien placé */
+#skip-btn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  background: rgba(20,0,10,0.8);
+  color: #db1c1c;
+  border: 2px solid #db1c1c;
+  padding: 12px 28px;
+  font-size: 1.05rem;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 20px #db1c1c;
+  transition: all 0.3s ease;
+}
+#skip-btn:hover {
+  background: #db1c1c;
+  color: #000;
+  box-shadow: 0 0 40px #ff1a57;
+}
+.success #skip-btn {
+  background: rgba(0,40,20,0.8);
+  color: #00ff88;
+  border-color: #00ff88;
+  box-shadow: 0 0 30px #00ff88;
+}
+.success #skip-btn:hover {
+  background: #00ff88;
+  color: #000;
 }
 
-/* === GLYPHS FLOTTANTS === */
-#glyphs {
+/* Glyphs = Ice — explosent du BAS vers le HAUT */
+#glyphs { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+.glyph {
+  position: absolute;
+  font-size: 2.8rem;
+  color: #00ffffdd;
+  text-shadow: 0 0 30px #00ffff, 0 0 50px #00ffff;
+  opacity: 0;
+  animation: glyphExplodeUp 3s linear forwards;
+}
+@keyframes glyphExplodeUp {
+  0%   { transform: translateY(120vh) scale(0.2) rotate(0deg); opacity: 0; }
+  10%  { opacity: 1; }
+  100% { transform: translateY(-130vh) scale(2) rotate(900deg); opacity: 0; }
+}
+
+/* Shake */
+#camera-shake {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 3;
+  z-index: 60;
+  animation: shake 0.14s ease-in-out 10;
+}
+@keyframes shake {
+  0%,100% { transform: translate(0,0); }
+  10%,30%,50%,70%,90% { transform: translate(-12px,12px); }
+  20%,40%,60%,80% { transform: translate(12px,-12px); }
 }
 
-.glyph {
-  position: absolute;
-  font-size: 2.2rem;
-  color: rgba(0, 255, 255, .12);
-  text-shadow: 0 0 25px #00eaff;
-  animation: float 18s infinite linear;
-  opacity: 0;
-}
-
-@keyframes float {
-  0% {
-    transform: translateY(100vh) rotate(0deg);
-    opacity: 0;
-  }
-
-  8% {
-    opacity: 1;
-  }
-
-  92% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(-150px) rotate(360deg);
-    opacity: 0;
-  }
-}
-
-/* === MESSAGE FINAL – 2 LIGNES, PARFAITEMENT CENTRÉ, PAS TROP GROS === */
-#final-breach {
+/* Blackout */
+#blackout {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  line-height: 1.1;
+  inset: 0;
+  background: #000;
   opacity: 0;
-  z-index: 45;
-  pointer-events: none;
-  white-space: nowrap;
-}
-
-#final-breach span {
-  display: block;
-  font-weight: bold;
-  letter-spacing: 12px;
-  text-shadow: 
-    0 0 50px #ff0033,
-    0 0 100px #ff0033,
-    0 0 160px #ff0033;
-}
-
-#final-breach .line1 {
-  font-size: 5.2rem;
-  color: #ff3366;
-}
-
-#final-breach .line2 {
-  font-size: 6.8rem;
-  color: #ff0033;
-  margin-top: -10px;
-}
-
-#final-breach.active {
-  opacity: 1;
-  animation: finalReveal 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-}
-
-@keyframes finalReveal {
-  0% {
-    opacity: 0;
-    filter: blur(10px);
-  }
-  60% {
-    opacity: 1;
-    filter: blur(2px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0);
-  }
-}
-
-#skip-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 25px;
-  padding: 8px 14px;
-  background: rgba(50, 50, 50, 0.4);
-  color: #666;
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.85rem;
-  letter-spacing: 2px;
-  border: 1px solid #444;
-  border-radius: 4px;
-  cursor: pointer;
-  z-index: 9999;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(4px);
-}
-
-#skip-btn:hover {
-  opacity: 1;
-  color: #aaa;
-  background: rgba(80, 80, 80, 0.6);
-  border-color: #666;
+  transition: opacity 1s;
+  z-index: 999;
 }

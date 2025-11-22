@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,50 +7,37 @@
   <link rel="stylesheet" href="css/boot.css">
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
-  <!-- COUCHES VISUELLES -->
-  <div class="crt scanlines"></div>
-  <div class="crt vhs-noise"></div>
-  <div class="crt chromatic"></div>
-  <div class="crt code-rain"></div>
-  <div class="crt hologram-grid"></div>
-  <div class="crt ice-cracks"></div>
-  <div class="crt distortion-field"></div>
-  <div class="crt camera-shake" id="shake"></div>
-  <div class="crt blackout" id="blackout"></div>
-  <div class="crt ice-particles" id="ice-particles"></div>
+  <!-- Fond noir + scanlines -->
+  <div class="scanlines"></div>
 
-  <!-- TERMINAL NETRUNNER -->
+  <!-- Terminal centré -->
   <div id="netrunner-terminal">
-    <div class="header">
-      <span>BLIXOWW://NEURAL_OS v2.077</span>
-    </div>
+    <div class="header">BLIXOWW://NEURAL_OS v2.077</div>
     <div id="output"></div>
     <div id="daemon-hex"></div>
     <div id="input-line">
       <span class="prompt">netrunner@arasaka:~$</span>
       <span id="typing"></span><span class="cursor">_</span>
     </div>
-  </div>
 
-  <!-- GLYPHS + MESSAGES FINAUX -->
-  <div id="glyphs"></div>
-  <div id="final-breach">
-    <span class="line1">BREACH COMPLETE</span>
-    <span class="line2">SYSTEM FLATLINED</span>
-  </div>
-  <!-- WARNING ARASAKA -->
+  <!-- Warning Arasaka-->
   <div id="arasaka-warning">
     <div class="warning-header">ARASAKA SECURITY ALERT</div>
     <div class="warning-text">INTRUSION DETECTED — BREACH PROTOCOL VIOLATION</div>
   </div>
 
-  <!-- SKIP BUTTON -->
-  <div id="skip-btn">skip intro</div>
+  <!-- Skip en bas à droite (fixe) -->
+  <a href="index.html" id="skip-btn">skip intro</a>
+
+  <!-- Glyphs qui explosent du bas -->
+  <div id="glyphs"></div>
+
+  <!-- Shake + Blackout -->
+  <div id="camera-shake"></div>
+  <div id="blackout"></div>
 
   <script src="js/boot.js"></script>
 </body>
-
 </html>
