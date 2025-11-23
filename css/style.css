@@ -1,3 +1,7 @@
+/* ============================================= */
+/* BLIXOWW — */
+/* ============================================= */
+
 *,
 *::before,
 *::after {
@@ -7,7 +11,6 @@
 }
 
 :root {
-    /* Palette ultra douce et pro */
     --bg:           #0d0d18;
     --text:         #e0f0ff;
     --cyan:         #00ccff;
@@ -18,6 +21,7 @@
     --glow:         0 0 16px rgba(0, 204, 255, 0.2);
 }
 
+/* Base */
 body {
     background: var(--bg);
     color: var(--text);
@@ -26,14 +30,15 @@ body {
     line-height: 1.7;
     letter-spacing: 0.4px;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
-/* ==================== MATRIX (ultra discret) ==================== */
+/* ==================== FOND MATRIX ==================== */
 #matrix {
     position: fixed;
     inset: 0;
     z-index: -2;
-    opacity: 0.55;
+    opacity: 0.4;
 }
 
 .scanlines {
@@ -43,6 +48,47 @@ body {
     z-index: 10;
     background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,255,0.008) 2px, rgba(0,255,255,0.008) 4px);
     mix-blend-mode: overlay;
+}
+
+/* ==================== HEADER — Mobile-first ==================== */
+.hud-minimal {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(10, 15, 40, 0.92);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 204, 255, 0.3);
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 700;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-width: 280px;
+    max-width: 90vw;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.logo-neon {
+    color: var(--cyan);
+    font-size: 1.05rem;
+    text-shadow: 0 0 12px currentColor;
+    white-space: nowrap;
+}
+
+.status {
+    color: #4aff86;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: rgba(74, 255, 134, 0.15);
+    border-radius: 6px;
+    font-weight: 700;
 }
 
 /* ==================== BOUTON BOOT ==================== */
@@ -80,41 +126,6 @@ body {
     padding: 0 20px 80px;
 }
 
-
-/* ==================== HEADER ==================== */
-.hud-minimal {
-    position: fixed;
-    top: 18px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: auto;
-    max-width: 1100px;
-    background: rgba(6, 10, 20, 0.6);
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.04);
-    border-radius: 12px;
-    padding: 8px 20px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.92rem;
-    font-weight: 600;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 18px;
-    box-shadow: 0 6px 18px rgba(3,8,20,0.6);
-    letter-spacing: 0.8px;
-    border-color: #00bfff;
-}
-
-.logo-neon {
-    color: #00ccff;
-    font-size: 1rem;
-    font-weight: 800;
-    letter-spacing: 1.6px;
-    text-shadow: none;
-}
-
 .top-nav {
     display: flex;
     gap: 12px;
@@ -138,16 +149,14 @@ body {
     transform: translateY(-2px);
 }
 
-.hud-minimal .status {
-    font-size: 0.78rem;
+.status {
     color: #4aff86;
-    background: rgba(0, 70, 35, 0.12);
-    padding: 4px 8px;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    background: rgba(74, 255, 134, 0.15);
     border-radius: 6px;
     font-weight: 700;
-    text-shadow: 0 0 8px rgba(74,255,134,0.12);
 }
-
 
 /* ==================== HERO SECTION ==================== */
 .hero {
@@ -225,45 +234,45 @@ body {
     box-shadow: 0 0 32px #00cfff, 0 0 32px #ff4a7d;
 }
 
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-}
-
 .hamburger span {
     width: 28px;
     height: 3px;
     background: var(--cyan);
     border-radius: 2px;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 .hamburger[aria-expanded="true"] span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
 .hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .hamburger[aria-expanded="true"] span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
 
-@media (max-width: 900px) {
+/* ==================== MOBILE ==================== */
+@media (max-width: 768px) {
     .hamburger { display: flex; }
+
     .top-nav {
         position: fixed;
-        top: 80px;
+        top: 70px;
         left: 0;
         right: 0;
-        background: rgba(10,15,30,0.98);
+        background: rgba(10, 15, 40, 0.98);
         flex-direction: column;
-        padding: 20px;
+        padding: 24px 20px;
         gap: 20px;
-        transform: translateY(-100%);
-        transition: transform 0.4s ease;
-        border-bottom: 1px solid var(--cyan);
+        border-bottom: 1px solid rgba(0, 204, 255, 0.3);
+        transform: translateY(-120%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 999;
     }
+
     .top-nav.active {
         transform: translateY(0);
+    }
+
+    .hud-minimal {
+        padding: 10px 16px;
+        gap: 12px;
+        font-size: 0.9rem;
     }
 }
 
@@ -522,9 +531,9 @@ h2 {
 /* Footer */
 footer {
     text-align: center;
-    padding: 80px 20px 40px;
-    color: #444;
-    font-size: 0.95rem;
+    padding: 100px 20px 40px;
+    color: #555;
+    font-size: 0.9rem;
 }
 
 /* Responsive */
@@ -536,6 +545,58 @@ footer {
     .pro-summary { flex-direction: column; padding: 24px 8px; }
     .summary-content { flex-direction: column; gap: 18px; }
     .avatar-cyber { width: 80px; height: 80px; }
+}
+
+/* ==================== BOUTONS FIXES (mobile-friendly) ==================== */
+#netrunner-toggle,
+#boot-launch-btn {
+    position: fixed;
+    z-index: 999;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    border-radius: 30px;
+    padding: 10px 16px;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+#netrunner-toggle {
+    bottom: 80px;
+    right: 16px;
+    background: rgba(20, 20, 40, 0.8);
+    color: #ff1a1a;
+    border: 1px solid #ff1a1a;
+    opacity: 0.8;
+}
+
+#netrunner-toggle:hover { opacity: 1; background: rgba(255, 26, 26, 0.2); }
+
+#boot-launch-btn {
+    bottom: 16px;
+    left: 16px;
+    background: rgba(15, 25, 50, 0.8);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 204, 255, 0.4);
+}
+
+#boot-launch-btn:hover {
+    background: rgba(0, 204, 255, 0.2);
+    box-shadow: 0 0 25px rgba(0, 204, 255, 0.3);
+}
+
+/* NetRunner Mode — boutons */
+.netrunner-mode #netrunner-toggle {
+    background: #ff1a1a;
+    color: white;
+    opacity: 1;
+}
+
+.netrunner-mode #boot-launch-btn {
+    background: linear-gradient(90deg, #ff1a1a, #ff4c6e);
+    color: white;
+    border-color: #ff1a1a;
+    box-shadow: 0 0 30px rgba(255, 26, 26, 0.6);
 }
 
 /* ==================== MODE NETRUNNER (rouge) ==================== */
