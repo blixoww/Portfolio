@@ -123,8 +123,7 @@ contactForm.addEventListener('submit', async function (e) {
             submitBtn.disabled = false;
         }, 2000);
     }
-  // Fallback: open mailto (recipient obfuscated to avoid cleartext in source)
-  // Base64 for: valentin.houpert@free.fr -> dmFsaW50aW4uaG91cGVydEBmcmVlLmZy
+    
   const _mail_b64 = 'dmFsaW50aW4uaG91cGVydEBmcmVlLmZy';
   const to = (typeof atob === 'function') ? atob(_mail_b64) : Buffer.from(_mail_b64, 'base64').toString('utf8');
   const subject = encodeURIComponent(`Contact via site — ${name}`);

@@ -257,7 +257,7 @@
         </div>
 
         <script>
-                fetch('https://ton-backend.railway.app/api/health')
+                fetch('https://portfolio-contact.onrender.com/api/contact')
                         .then(r => r.json())
                         .then(d => document.getElementById('api-status').textContent = d.ok ? 'API: En ligne' : 'API: Hors ligne')
                         .catch(() => document.getElementById('api-status').textContent = 'API: Hors ligne');
