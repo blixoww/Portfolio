@@ -13,6 +13,7 @@ Ce projet est mon **portfolio professionnel**, présentant :
 - Effet "Matrix" en canvas animé
 - Terminal simulé avec commandes personnalisées
 - Responsive adapté mobile / desktop
+- GitHub Actions
 
 ## 🧩 Fonctionnalités du terminal
 
