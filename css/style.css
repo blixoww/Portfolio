@@ -161,7 +161,7 @@ body {
 }
 
 .main-title {
-    font: 900 4rem 'Orbitron', sans-serif;
+    font: 900 4rem 'monascpace kyrpton', sans-serif;
     color: var(--primary-color, #00cfff);
     letter-spacing: 8px;
     text-shadow: var(--glow-pink);
@@ -269,7 +269,7 @@ body {
 
 /* ==================== SECTIONS ==================== */
 h2 {
-    font: 900 2.6rem 'Orbitron', sans-serif;
+    font: 900 4rem 'monascpace kyrpton', sans-serif;
     text-align: center;
     margin: 100px 0 50px;
     color: var(--cyan);
