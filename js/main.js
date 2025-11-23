@@ -71,82 +71,55 @@ document.querySelectorAll('.details-btn').forEach(btn => {
   });
 });
 
+/* ---------- end project details ---------- */
 
-/* ---------- CONTACT FORM: send to backend if configured, else fallback to mailto ---------- */
-const contactForm = document.getElementById('contact-form');
+/* ---------- NETRUNNER MODE TOGGLE + MOBILE MENU ---------- */
+(() => {
+  const netrunnerBtn = document.getElementById('netrunner-toggle');
+  const menuBtn = document.querySelector('.hamburger');
+  const topNav = document.querySelector('.top-nav');
 
-contactForm.addEventListener('submit', async function (e) {
-    e.preventDefault();
-
-    const name = document.getElementById('cf-name').value.trim();
-    const message = document.getElementById('cf-message').value.trim();
-
-    if (!name || !message) {
-        alert('Merci de renseigner votre nom et votre message.');
-        return;
+  // NETRUNNER: persistence via localStorage
+  const setNetrunner = (active) => {
+    if (active) {
+      document.body.classList.add('netrunner-mode');
+      localStorage.setItem('netrunner', '1');
+    } else {
+      document.body.classList.remove('netrunner-mode');
+      localStorage.removeItem('netrunner');
     }
-
-    const submitBtn = document.querySelector('.contact-submit');
-    const originalText = submitBtn.textContent;
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Envoi en cours...';
-
-    try {
-        const response = await fetch('https://ton-backend.railway.app/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, message })
-        });
-
-        const data = await response.json();
-
-        if (data.ok) {
-            alert('Message envoyé avec succès ! Je te réponds très vite.');
-            contactForm.reset();
-            submitBtn.textContent = 'Envoyé !';
-            submitBtn.classList.add('btn-neon');
-            setTimeout(() => {
-                submitBtn.textContent = 'Envoyer';
-                submitBtn.disabled = false;
-                submitBtn.classList.remove('btn-neon');
-            }, 3000);
-        } else {
-            throw new Error(data.error || 'Erreur inconnue');
-        }
-    } catch (err) {
-        console.error('Erreur envoi:', err);
-        const mailto = `mailto:valentin.houpert@free.fr?subject=Contact via portfolio — ${encodeURIComponent(name)}&body=${encodeURIComponent(`Nom: ${name}\n\nMessage:\n${message}`)}`;
-        window.location.href = mailto;
-        submitBtn.textContent = 'Ouverture mail...';
-        setTimeout(() => {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
+    if (netrunnerBtn) {
+      netrunnerBtn.textContent = active ? 'NetRunner Mode Actif' : 'Activer le mode NetRunner';
+      netrunnerBtn.style.opacity = active ? '1' : '0.6';
     }
-    
-  const _mail_b64 = 'dmFsaW50aW4uaG91cGVydEBmcmVlLmZy';
-  const to = (typeof atob === 'function') ? atob(_mail_b64) : Buffer.from(_mail_b64, 'base64').toString('utf8');
-  const subject = encodeURIComponent(`Contact via site — ${name}`);
-  const bodyText = `Nom: ${name}\n\nMessage:\n${message}\n\n---\nEnvoyé depuis BLIXOWW site`;
-  const body = encodeURIComponent(bodyText);
+  };
 
-  const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
-  window.location.href = mailto;
+  try {
+    const stored = localStorage.getItem('netrunner');
+    setNetrunner(!!stored);
+  } catch (err) {
+    setNetrunner(false);
+  }
 
-  setTimeout(() => {
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Envoyer';
-    contactForm.reset();
-  }, 2200);
-});
+  if (netrunnerBtn) {
+    netrunnerBtn.addEventListener('click', () => {
+      const active = document.body.classList.contains('netrunner-mode');
+      setNetrunner(!active);
+    });
+  }
 
-const netrunnerBtn = document.getElementById('netrunner-toggle');
+  if (menuBtn && topNav) {
+    menuBtn.addEventListener('click', () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', String(!expanded));
+      topNav.classList.toggle('active');
+    });
 
-if (netrunnerBtn) {
-  netrunnerBtn.addEventListener('click', () => {
-    document.body.classList.toggle('netrunner-mode');
-    netrunnerBtn.textContent = document.body.classList.contains('netrunner-mode')
-      ? 'NetRunner Mode Actif'
-      : 'NetRunner Mode Inactif';
-  });
-}
+    topNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        topNav.classList.remove('active');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+})();

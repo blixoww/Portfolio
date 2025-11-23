@@ -5,34 +5,49 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>BLIXOWW — Valentin Georges</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="css/style.css">
         <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto+Mono:wght@300;400;500&display=swap"
                 rel="stylesheet">
+        <!-- Open Graph / Social -->
+        <meta property="og:title" content="BLIXOWW — Valentin Georges">
+        <meta property="og:description" content="Portfolio — Administrateur Système / DevOps junior. Projets, compétences et contact LinkedIn.">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="/favicon.svg">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="BLIXOWW — Valentin Georges">
+        <meta name="twitter:description" content="Portfolio — Administrateur Système / DevOps junior.">
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+        <link rel="manifest" href="/manifest.json">
 </head>
 
 <body>
-
-
-        <!-- Fond animé (NE PAS MODIFIER) -->
+        <!-- Fond animé -->
         <canvas id="matrix"></canvas>
         <div class="scanlines"></div>
         <!-- /Fond animé -->
 
         <div class="container">
-
                 <!-- HEADER -->
                 <header class="hud-minimal">
-                        <span class="logo-neon">BLIXOWW://OS v2.077</span> <span class="status">ONLINE</span>
+                        <span class="logo-neon">BLIXOWW://OS v2.077</span>
+                        <span class="status">ONLINE</span>
+
+                        <!-- Hamburger (visible seulement sur mobile) -->
+                        <button class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+                                <span></span><span></span><span></span>
+                        </button>
+
                         <nav class="top-nav">
                                 <a href="#projects">Projets</a>
                                 <a href="#about">Présentation</a>
                                 <a href="#skills">Compétences</a>
                                 <a href="#experience">Expériences</a>
                                 <a href="#Formations">Formations</a>
-                                <a href="#contact">Contact</a>
+                                <a href="https://github.com/blixoww" target="_blank" rel="noopener">GitHub</a>
                         </nav>
                 </header>
-
                 <!-- HERO -->
                 <section class="hero" aria-labelledby="hero-title">
                         <h1 class="main-title" id="hero-title">BLIXOWW</h1>
@@ -40,7 +55,6 @@
                         <p class="role">Administrateur Système / DevOps junior</p>
 
                         <div class="contact-buttons">
-                                <a href="#contact" class="btn-outline btn-neon">Contact</a>
                                 <a href="https://www.linkedin.com/in/valentin-georges-14956a27b/" target="_blank"
                                         rel="noopener" class="btn-fill btn-neon">LinkedIn</a>
                         </div>
@@ -101,47 +115,47 @@
                         <h2>Compétences</h2>
                         <div class="skill-icons">
                                 <!-- mêmes icônes que tu avais -->
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/terraform/terraform-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/terraform/terraform-original.svg"
                                         alt="Terraform" title="Terraform">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg"
                                         alt="Kubernetes" title="Kubernetes">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
                                         alt="Docker" title="Docker">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
                                         alt="AWS" title="AWS">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ansible/ansible-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ansible/ansible-original.svg"
                                         alt="Ansible" title="Ansible">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg"
                                         alt="Linux" title="Linux">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
                                         alt="Git" title="Git">
-                                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg"
+                                <img loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bash/bash-original.svg"
                                         alt="Bash" title="Bash">
                         </div>
 
                         <div class="detailed-skills">
                                 <div class="skill-column">
-                                        <h3>Infrastructure (IaC)</h3>
+                                        <h3>Infrastructure (IaC) & Cloud</h3>
                                         <ul>
-                                                <li>Terraform — modules</li>
-                                                <li>Ansible — playbooks</li>
-                                                <li>AWS — VPC, IAM, EC2, S3</li>
+                                                <li>Terraform</li>
+                                                <li>Ansible</li>
+                                                <li>AWS (VPC, IAM, EC2, S3)</li>
                                         </ul>
                                 </div>
                                 <div class="skill-column">
                                         <h3>Orchestration & CI/CD</h3>
                                         <ul>
-                                                <li>Kubernetes — k3s, minikube</li>
-                                                <li>Docker — images optimisées, Trivy</li>
-                                                <li>GitLab CI / Jenkins / GitHub Actions — CI/CD optimisée</li>
+                                                <li>Kubernetes (k3s, minikube)</li>
+                                                <li>Docker</li>
+                                                <li>GitLab CI / Jenkins / GitHub Actions</li>
                                         </ul>
                                 </div>
                                 <div class="skill-column">
-                                        <h3>Dev & Observabilité</h3>
+                                        <h3>Développement & Observabilité</h3>
                                         <ul>
-                                                <li>CI/CD : GitHub Actions, GitLab CI</li>
+                                                <li>Développement : Java, SQL, JavaScript (TS)</li>
+                                                <li>Scripting : Bash, Python</li>
                                                 <li>Monitoring : Prometheus, Grafana, ELK</li>
-                                                <li>Scripting : Bash, Python ; Dev : Java, SQL, TypeScript</li>
                                         </ul>
                                 </div>
                         </div>
@@ -202,7 +216,7 @@
                 </section>
 
                 <!-- CERTIFICATIONS -->
-                <section class="Formations">
+                <section class="Formations" id="Formations">
                         <h2>Certifications & Formations</h2>
                         <div class="project-grid">
                                 <article class="project-card">
@@ -220,30 +234,7 @@
                         </div>
                 </section>
 
-                <!-- CONTACT -->
-                <section class="contact" id="contact">
-                        <h2>Contact</h2>
-
-                        <form id="contact-form">
-                                <input type="text" id="cf-name" name="name" placeholder="Nom" required>
-                                <textarea id="cf-message" name="message" rows="6" placeholder="Votre message..."
-                                        required></textarea>
-                                <div class="contact-actions">
-                                        <button type="submit" class="contact-submit btn-neon"><span
-                                                        style="margin-right:8px;vertical-align:middle;"><svg width="20"
-                                                                height="20" viewBox="0 0 20 20" fill="none"
-                                                                style="vertical-align:middle;">
-                                                                <path d="M2 10L18 3L15 17L9 13L2 10Z" stroke="#00cfff"
-                                                                        stroke-width="2" fill="#0a0a0a" />
-                                                        </svg></span>Envoyer</button>
-                                        <a class="btn-outline contact-link"
-                                                href="https://www.linkedin.com/in/valentin-georges-14956a27b/"
-                                                target="_blank" rel="noopener">
-                                                Me contacter sur LinkedIn
-                                        </a>
-                                </div>
-                        </form>
-                </section>
+                <!-- Contact form removed — using LinkedIn + GitHub links instead -->
 
                 <footer>
                         <a href="boot.html" id="boot-launch-btn">Lancer la séquence Boot</a>
@@ -251,17 +242,6 @@
                         © 2077 BLIXOWW — Night City Netrunner Division
                 </footer>
         </div>
-
-        <div id="api-status" style="position:fixed; top:10px; right:10px; font-size:0.8rem; color:#0f0; opacity:0.6;">
-                API: Checking...
-        </div>
-
-        <script>
-                fetch('https://portfolio-contact.onrender.com/api/contact')
-                        .then(r => r.json())
-                        .then(d => document.getElementById('api-status').textContent = d.ok ? 'API: En ligne' : 'API: Hors ligne')
-                        .catch(() => document.getElementById('api-status').textContent = 'API: Hors ligne');
-        </script>
 
         <script src="js/main.js"></script>
 </body>

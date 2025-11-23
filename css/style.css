@@ -225,6 +225,48 @@ body {
     box-shadow: 0 0 32px #00cfff, 0 0 32px #ff4a7d;
 }
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background: var(--cyan);
+    border-radius: 2px;
+    transition: all 0.3s;
+}
+
+.hamburger[aria-expanded="true"] span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+.hamburger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.hamburger[aria-expanded="true"] span:nth-child(3) { transform: rotate(-45deg) translate(7px, -7px); }
+
+@media (max-width: 900px) {
+    .hamburger { display: flex; }
+    .top-nav {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background: rgba(10,15,30,0.98);
+        flex-direction: column;
+        padding: 20px;
+        gap: 20px;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease;
+        border-bottom: 1px solid var(--cyan);
+    }
+    .top-nav.active {
+        transform: translateY(0);
+    }
+}
+
 /* ==================== SECTIONS ==================== */
 h2 {
     font: 900 2.6rem 'Orbitron', sans-serif;
