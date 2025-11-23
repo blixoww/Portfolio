@@ -62,17 +62,10 @@ async function run() {
     output.scrollTop = output.scrollHeight;
 
     await sleep(3200);
-      blackout.style.opacity = "1";
-      await sleep(1200);
-      // Vérifie si un paramètre "target" est présent dans l'URL
-      const params = new URLSearchParams(window.location.search);
-      const target = params.get('target');
-      if (target === 'recruteur') {
-        location.href = "recruiter.html";
-      } else {
-        location.href = "index.html";
-      }
-      return;
+    blackout.style.opacity = "1";
+    await sleep(1200);
+    location.href = "secret.html";
+
   }
 
   // Typing de la commande
@@ -94,7 +87,7 @@ if (skipBtn) {
     if (skipActive) return;
     skipActive = true;
     blackout.style.opacity = '1';
-    setTimeout(() => location.href = "index.html", 800);
+    setTimeout(() => location.href = "secret.html", 800);
   });
 }
 

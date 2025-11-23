@@ -1,0 +1,97 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    height: 100vh;
+    background: #000;
+    color: white;
+    font-family: 'Orbitron', monospace;
+    font-weight: 500;
+    font-size: 17px;
+    overflow: hidden;
+    letter-spacing: 0.6px;
+}
+
+#crt {
+    position: fixed;
+    inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,0,60,0.03) 2px, rgba(255,0,60,0.03) 4px);
+    pointer-events: none;
+    z-index: 10;
+}
+
+#terminal {
+    padding: 40px;
+    height: 100%;
+    line-height: 1.5;
+    overflow-y: auto;
+}
+
+/* Chrome, Edge, Safari */
+#terminal::-webkit-scrollbar {
+    width: 8px;
+}
+
+#terminal::-webkit-scrollbar-track {
+    background: rgba(255, 0, 60, 0.05);  
+}
+
+#terminal::-webkit-scrollbar-thumb {
+    background: rgba(255, 0, 60, 0.3);   
+    border-radius: 4px;
+}
+
+#terminal::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 0, 60, 0.6);   
+}
+
+/* Firefox */
+#terminal {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,0,60,0.3) rgba(255,0,60,0.05);
+}
+
+.line {
+    margin-bottom: 12px;
+    white-space: pre;
+    color: white;
+}
+
+.prompt {
+    color: #ff003c;
+    text-shadow: 0 0 20px #ff003c;
+    font-weight: 900;
+}
+
+.input {
+    outline: none;
+    color: white;
+    background: transparent;
+    border: none;
+    font: inherit;
+    caret-color: transparent;
+    min-width: 1ch;
+}
+
+.cursor {
+    display: inline-block;
+    width: 11px;
+    height: 1.4em;
+    background: white;
+    animation: blink 1s step-end infinite;
+    vertical-align: bottom;
+}
+
+@keyframes blink {
+    50% { background: transparent; }
+}
+
+.red { color: #ff003c; text-shadow: 0 0 20px #ff003c; font-weight: 900; }
+.cyan { color: #00ffff; text-shadow: 0 0 20px #00ffff; font-weight: 900; }
+.green { color: #00ff00; text-shadow: 0 0 20px #00ff00; font-weight: 900; }
+.blue { color: #1e90ff; text-shadow: 0 0 20px #1e90ff; font-weight: 900; }
+.yellow { color: #ffd700; text-shadow: 0 0 20px #ffd700; font-weight: 900; }
+.white { color: #ffffff; text-shadow: 0 0 20px #ffffff; font-weight: 900; }
+.bold { font-weight: 900; }
+.dim { opacity: 0.6; }
+.underline { text-decoration: underline; }
+
