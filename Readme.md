@@ -1,4 +1,4 @@
-# BLIXOWW — Portfolio Personnel
+# BLIXOWW - Portfolio Personnel
 
 Ce projet est mon **portfolio professionnel**, présentant :
 - Mon identité et mon parcours,
