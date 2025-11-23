@@ -1,4 +1,4 @@
-/* ---------- MATRIX BACKGROUND (UNCHANGED - kept exactly) ---------- */
+/* ---------- MATRIX BACKGROUND ---------- */
 const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
 let w = canvas.width = window.innerWidth;
@@ -6,22 +6,23 @@ let h = canvas.height = window.innerHeight;
 window.addEventListener('resize', () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
 
 const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-const chars = Array.from({length:150}, () => ({
-  x: Math.random()*w,
-  y: Math.random()*h,
-  speed: 0.2+Math.random()*1,
-  char: katakana[Math.floor(Math.random()*katakana.length)],
-  size: 14+Math.random()*18
+const chars = Array.from({ length: 150 }, () => ({
+  x: Math.random() * w,
+  y: Math.random() * h,
+  speed: 0.2 + Math.random() * 1,
+  char: katakana[Math.floor(Math.random() * katakana.length)],
+  size: 14 + Math.random() * 18,
+  alpha: 0.2 + Math.random() * 0.3
 }));
 
 function draw() {
-  ctx.clearRect(0,0,w,h);
+  ctx.clearRect(0, 0, w, h);
   chars.forEach(c => {
     ctx.font = `${c.size}px monospace`;
-    ctx.fillStyle = `rgba(0,255,255,${0.1 + Math.random()*0.5})`;
+    ctx.fillStyle = `rgba(0,255,255,${c.alpha})`;
     ctx.fillText(c.char, c.x, c.y);
     c.y -= c.speed;
-    if (c.y < -20) { c.y = h+20; c.x = Math.random()*w; c.char = katakana[Math.floor(Math.random()*katakana.length)]; }
+    if (c.y < -20) { c.y = h + 20; c.x = Math.random() * w; c.char = katakana[Math.floor(Math.random() * katakana.length)]; }
   });
   requestAnimationFrame(draw);
 }
@@ -68,7 +69,7 @@ document.querySelectorAll('.details-btn').forEach(btn => {
 /* ---------- CONTACT FORM: open mailto with name+message (only required fields) ---------- */
 const contactForm = document.getElementById('contact-form');
 
-contactForm.addEventListener('submit', function(e) {
+contactForm.addEventListener('submit', function (e) {
   e.preventDefault();
   const name = document.getElementById('cf-name').value.trim();
   const message = document.getElementById('cf-message').value.trim();
@@ -102,10 +103,10 @@ contactForm.addEventListener('submit', function(e) {
 const netrunnerBtn = document.getElementById('netrunner-toggle');
 
 if (netrunnerBtn) {
-    netrunnerBtn.addEventListener('click', () => {
-        document.body.classList.toggle('netrunner-mode');
-        netrunnerBtn.textContent = document.body.classList.contains('netrunner-mode')
-            ? 'NetRunner Mode Actif'
-            : 'NetRunner Mode Inactif';
-    });
+  netrunnerBtn.addEventListener('click', () => {
+    document.body.classList.toggle('netrunner-mode');
+    netrunnerBtn.textContent = document.body.classList.contains('netrunner-mode')
+      ? 'NetRunner Mode Actif'
+      : 'NetRunner Mode Inactif';
+  });
 }
