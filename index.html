@@ -45,7 +45,7 @@
                                         rel="noopener" class="btn-fill btn-neon">LinkedIn</a>
                         </div>
                 </section>
-                                        <button id="netrunner-toggle" style="
+                <button id="netrunner-toggle" style="
                                                 position: fixed;
                                                 bottom: 20px;
                                                 right: 20px;
@@ -85,7 +85,7 @@
                                         </div>
                                         <div class="meta-item">
                                                 <span class="meta-key">Stack principale</span>
-                                                <span class="meta-value">GitLab CI • 
+                                                <span class="meta-value">GitLab CI •
                                                         Kubernetes • Docker • AWS</span>
                                         </div>
                                         <div class="meta-item">
@@ -236,40 +236,32 @@
                                                                 <path d="M2 10L18 3L15 17L9 13L2 10Z" stroke="#00cfff"
                                                                         stroke-width="2" fill="#0a0a0a" />
                                                         </svg></span>Envoyer</button>
-                                        <a class="btn-outline"
+                                        <a class="btn-outline contact-link"
                                                 href="https://www.linkedin.com/in/valentin-georges-14956a27b/"
                                                 target="_blank" rel="noopener">
-                                                Me contacter directement via LinkedIn
+                                                Me contacter sur LinkedIn
                                         </a>
                                 </div>
                         </form>
                 </section>
 
                 <footer>
-                                        <a href="boot.html" id="boot-launch-btn" style="
-                                                position: fixed;
-                                                bottom: 20px;
-                                                left: 20px;
-                                                background: linear-gradient(90deg, #ff1a1a 60%, #ff4c6e 100%);
-                                                color: #fff;
-                                                border: 2px solid #ff1a1a;
-                                                padding: 12px 20px;
-                                                border-radius: 40px;
-                                                font-family: 'Orbitron', monospace;
-                                                font-weight: 700;
-                                                text-shadow: 0 0 12px #ff1a1a, 0 0 24px #ff4c6e;
-                                                box-shadow: 0 0 18px #ff1a1a, 0 0 32px #ff4c6e;
-                                                cursor: pointer;
-                                                z-index: 1000;
-                                                font-size: 1rem;
-                                                opacity: 0.85;
-                                                transition: opacity 0.3s;
-                                                text-decoration: none;
-                                        ">Lancer la séquence Boot</a>
+                        <a href="boot.html" id="boot-launch-btn">Lancer la séquence Boot</a>
 
-                                        © 2077 BLIXOWW — Night City Netrunner Division
+                        © 2077 BLIXOWW — Night City Netrunner Division
                 </footer>
         </div>
+
+        <div id="api-status" style="position:fixed; top:10px; right:10px; font-size:0.8rem; color:#0f0; opacity:0.6;">
+                API: Checking...
+        </div>
+
+        <script>
+                fetch('https://ton-backend.railway.app/api/health')
+                        .then(r => r.json())
+                        .then(d => document.getElementById('api-status').textContent = d.ok ? 'API: En ligne' : 'API: Hors ligne')
+                        .catch(() => document.getElementById('api-status').textContent = 'API: Hors ligne');
+        </script>
 
         <script src="js/main.js"></script>
 </body>

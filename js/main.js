@@ -3,31 +3,37 @@ const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
 let w = canvas.width = window.innerWidth;
 let h = canvas.height = window.innerHeight;
-window.addEventListener('resize', () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; });
 
-const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-const chars = Array.from({ length: 150 }, () => ({
-  x: Math.random() * w,
-  y: Math.random() * h,
-  speed: 0.2 + Math.random() * 1,
-  char: katakana[Math.floor(Math.random() * katakana.length)],
-  size: 14 + Math.random() * 18,
-  alpha: 0.2 + Math.random() * 0.3
-}));
+window.addEventListener('resize', () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+});
+
+const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+const columns = Math.floor(w / 20);
+const drops = Array(columns).fill(1);
 
 function draw() {
-  ctx.clearRect(0, 0, w, h);
-  chars.forEach(c => {
-    ctx.font = `${c.size}px monospace`;
-    ctx.fillStyle = `rgba(0,255,255,${c.alpha})`;
-    ctx.fillText(c.char, c.x, c.y);
-    c.y -= c.speed;
-    if (c.y < -20) { c.y = h + 20; c.x = Math.random() * w; c.char = katakana[Math.floor(Math.random() * katakana.length)]; }
-  });
-  requestAnimationFrame(draw);
-}
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
+    ctx.fillRect(0, 0, w, h);
 
+    ctx.fillStyle = '#0ff';
+    ctx.font = '14px monospace';
+
+    for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillStyle = `rgba(0, 255, 255, ${0.05 + Math.random() * 0.1})`;
+        ctx.fillText(text, i * 20, drops[i] * 20);
+
+        if (drops[i] * 20 > h && Math.random() > 0.975) drops[i] = 0;
+        drops[i]++;
+    }
+}
 draw();
+requestAnimationFrame(function loop() {
+    draw();
+    requestAnimationFrame(loop);
+});
 /* ---------- end matrix ---------- */
 
 
@@ -66,20 +72,61 @@ document.querySelectorAll('.details-btn').forEach(btn => {
 });
 
 
-/* ---------- CONTACT FORM: open mailto with name+message (only required fields) ---------- */
+/* ---------- CONTACT FORM: send to backend if configured, else fallback to mailto ---------- */
 const contactForm = document.getElementById('contact-form');
 
-contactForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const name = document.getElementById('cf-name').value.trim();
-  const message = document.getElementById('cf-message').value.trim();
+contactForm.addEventListener('submit', async function (e) {
+    e.preventDefault();
 
-  if (!name || !message) {
-    alert('Merci de renseigner votre nom et votre message.');
-    return;
-  }
+    const name = document.getElementById('cf-name').value.trim();
+    const message = document.getElementById('cf-message').value.trim();
 
-  const to = 'valentin.houpert@free.fr';
+    if (!name || !message) {
+        alert('Merci de renseigner votre nom et votre message.');
+        return;
+    }
+
+    const submitBtn = document.querySelector('.contact-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Envoi en cours...';
+
+    try {
+        const response = await fetch('https://ton-backend.railway.app/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, message })
+        });
+
+        const data = await response.json();
+
+        if (data.ok) {
+            alert('Message envoyé avec succès ! Je te réponds très vite.');
+            contactForm.reset();
+            submitBtn.textContent = 'Envoyé !';
+            submitBtn.classList.add('btn-neon');
+            setTimeout(() => {
+                submitBtn.textContent = 'Envoyer';
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('btn-neon');
+            }, 3000);
+        } else {
+            throw new Error(data.error || 'Erreur inconnue');
+        }
+    } catch (err) {
+        console.error('Erreur envoi:', err);
+        const mailto = `mailto:valentin.houpert@free.fr?subject=Contact via portfolio — ${encodeURIComponent(name)}&body=${encodeURIComponent(`Nom: ${name}\n\nMessage:\n${message}`)}`;
+        window.location.href = mailto;
+        submitBtn.textContent = 'Ouverture mail...';
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }, 2000);
+    }
+  // Fallback: open mailto (recipient obfuscated to avoid cleartext in source)
+  // Base64 for: valentin.houpert@free.fr -> dmFsaW50aW4uaG91cGVydEBmcmVlLmZy
+  const _mail_b64 = 'dmFsaW50aW4uaG91cGVydEBmcmVlLmZy';
+  const to = (typeof atob === 'function') ? atob(_mail_b64) : Buffer.from(_mail_b64, 'base64').toString('utf8');
   const subject = encodeURIComponent(`Contact via site — ${name}`);
   const bodyText = `Nom: ${name}\n\nMessage:\n${message}\n\n---\nEnvoyé depuis BLIXOWW site`;
   const body = encodeURIComponent(bodyText);
@@ -87,15 +134,9 @@ contactForm.addEventListener('submit', function (e) {
   const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
   window.location.href = mailto;
 
-  // Ajout d'un feedback visuel
-  const submitBtn = document.querySelector('.contact-submit');
-  submitBtn.disabled = true;
-  submitBtn.textContent = 'Message envoyé !';
-  submitBtn.classList.add('btn-neon');
   setTimeout(() => {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Envoyer';
-    submitBtn.classList.remove('btn-neon');
     contactForm.reset();
   }, 2200);
 });

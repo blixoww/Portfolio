@@ -1,0 +1,15 @@
+{
+  "name": "portfolio-contact-api",
+  "version": "1.0.0",
+  "description": "Simple contact API for portfolio site (SendGrid)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.2"
+  }
+}

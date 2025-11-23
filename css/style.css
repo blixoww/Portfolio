@@ -1,42 +1,78 @@
-/* Reset */
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Base */
-body {
-    background: #0a0a0a;
-    color: #b8eaff;
-    font-family: 'Roboto Mono', sans-serif;
-    overflow-x: hidden;
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+:root {
+    /* Palette ultra douce et pro */
+    --bg:           #0d0d18;
+    --text:         #e0f0ff;
+    --cyan:         #00ccff;
+    --cyan-soft:    #0099cc;
+    --pink:         #ff4a8c;
+    --card-bg:      rgba(20, 25, 55, 0.35);
+    --border:       rgba(0, 204, 255, 0.15);
+    --glow:         0 0 16px rgba(0, 204, 255, 0.2);
 }
 
-/* Canvas & scanlines */
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: 0.4px;
+    overflow-x: hidden;
+}
+
+/* ==================== MATRIX (ultra discret) ==================== */
 #matrix {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.25;
 }
 
 .scanlines {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     pointer-events: none;
     z-index: 10;
-    background: repeating-linear-gradient(0deg, rgba(0, 255, 255, .03) 0, rgba(0, 255, 255, .03) 2px, transparent 2px, transparent 4px);
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,255,0.008) 2px, rgba(0,255,255,0.008) 4px);
+    mix-blend-mode: overlay;
 }
 
+/* ==================== BOUTON BOOT ==================== */
+#boot-launch-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(15, 25, 50, 0.7);
+    color: var(--cyan);
+    padding: 14px 28px;
+    border: 1px solid var(--cyan);
+    border-radius: 50px;
+    font-family: 'Orbitron', monospace;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.15);
+    z-index: 1000;
+    transition: all 0.5s ease;
+    backdrop-filter: blur(8px);
+    opacity: 0.9;
+}
+
+#boot-launch-btn:hover {
+    background: rgba(0, 212, 255, 0.15);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ==================== CONTENU PRINCIPAL ==================== */
 /* Container */
 .container {
     max-width: 1200px;
@@ -45,70 +81,75 @@ body {
 }
 
 
-/* Header */
+/* ==================== HEADER ==================== */
 .hud-minimal {
     position: fixed;
-    top: 24px;
+    top: 18px;
     left: 50%;
     transform: translateX(-50%);
-    background: rgba(10, 10, 20, 0.85);
-    backdrop-filter: blur(16px);
-    padding: 16px 44px;
-    border: 2px solid #00cfff;
-    border-radius: 50px;
-    font-family: 'Orbitron';
-    font-size: 1.08rem;
+    width: auto;
+    max-width: 1100px;
+    background: rgba(6, 10, 20, 0.6);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 12px;
+    padding: 8px 20px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 600;
     z-index: 1000;
     display: flex;
     align-items: center;
-    gap: 30px;
-    box-shadow: 0 0 40px #00cfff44, 0 4px 20px rgba(0,212,255,0.08);
-    letter-spacing: 1.5px;
+    justify-content: space-between;
+    gap: 18px;
+    box-shadow: 0 6px 18px rgba(3,8,20,0.6);
+    letter-spacing: 0.8px;
+    border-color: #00bfff;
 }
 
 .logo-neon {
-    color: #00cfff;
-    text-shadow: 0 0 12px #00cfff;
-    font-weight: 900;
-    font-size: 1.15rem;
-    letter-spacing: 2px;
+    color: #00ccff;
+    font-size: 1rem;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+    text-shadow: none;
 }
-
-.hud-minimal .status {
-    color: #4aff86;
-    margin-left: 10px;
-    font-weight: 700;
-    text-shadow: 0 0 8px #4aff77;
-}
-
 
 .top-nav {
-    margin-left: 20px;
     display: flex;
     gap: 12px;
     align-items: center;
-    transition: all .3s;
-    font-weight: 500;
-    padding: 10px 20px;
 }
 
 .top-nav a {
-    color: #00cfff;
+    color: var(--cyan);
+    box-shadow: 0 0 0px var(--cyan);
     text-decoration: none;
-    font-size: 0.95rem;
-    padding: 6px 12px;
-    border-radius: 8px;
-    transition: background .25s, color .25s, box-shadow .25s;
-    box-shadow: 0 0 0px #00cfff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: color 0.18s ease, background 0.18s ease, transform 0.18s ease;
 }
 
 .top-nav a:hover {
-    background: rgba(0, 255, 255, 0.18);
-    color: #eaf6ff;
-    box-shadow: 0 0 12px #00cfff;
+    color: var(--cyan);
+    background: rgba(0, 204, 255, 0.06);
+    transform: translateY(-2px);
 }
 
-/* HERO */
+.hud-minimal .status {
+    font-size: 0.78rem;
+    color: #4aff86;
+    background: rgba(0, 70, 35, 0.12);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: 700;
+    text-shadow: 0 0 8px rgba(74,255,134,0.12);
+}
+
+
+/* ==================== HERO SECTION ==================== */
 .hero {
     text-align: center;
     padding: 18vh 20px 8vh;
@@ -120,12 +161,12 @@ body {
 }
 
 .main-title {
-    font: 900 8.2rem 'Orbitron', monospace;
-    color: #ff4a7d;
-    letter-spacing: 7px;
-    text-shadow: 0 0 60px rgba(255,74,125,0.3), 0 0 80px rgba(255,74,125,0.2);
-    margin-bottom: 12px;
-    line-height: 0.95;
+    font: 900 4rem 'Orbitron', sans-serif;
+    color: var(--primary-color, #00cfff);
+    letter-spacing: 8px;
+    text-shadow: var(--glow-pink);
+    margin-bottom: 8px;
+    line-height: 1;
 }
 
 .name {
@@ -151,33 +192,26 @@ body {
     justify-content: center;
 }
 
-
 .btn-outline,
 .btn-fill {
-    display: inline-block;
     padding: 14px 36px;
-    font-size: 1.08rem;
+    font-size: 1.05rem;
     font-weight: 600;
-    text-decoration: none;
     border-radius: 40px;
-    transition: all .3s;
-    font-family: 'Roboto Mono', monospace;
-    box-shadow: 0 0 0px #00cfff;
-    position: relative;
-    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.4s ease;
 }
 
 .btn-outline {
-    border: 2px solid #00cfff;
-    color: #00cfff;
+    border: 1px solid rgba(0, 204, 255, 0.4);
+    color: var(--cyan);
     background: transparent;
 }
 
 .btn-outline:hover {
-    background: rgba(0,207,255,0.18);
-    color: #00cfff;
-    border-color: #00cfff;
-    box-shadow: 0 0 18px #00cfff, 0 0 32px #00cfff;
+    border-color: var(--cyan);
+    background: rgba(0, 204, 255, 0.1);
+    box-shadow: var(--glow);
 }
 
 .btn-fill {
@@ -191,18 +225,14 @@ body {
     box-shadow: 0 0 32px #00cfff, 0 0 32px #ff4a7d;
 }
 
-.btn-neon {
-    text-shadow: 0 0 8px #00cfff, 0 0 18px #ff4a7d;
-    box-shadow: 0 0 12px #00cfff, 0 0 18px #ff4a7d;
-}
-
-/* Section titles */
+/* ==================== SECTIONS ==================== */
 h2 {
-    font: 900 2.8rem 'Orbitron';
+    font: 900 2.6rem 'Orbitron', sans-serif;
     text-align: center;
-    margin: 70px 0 36px;
-    color: #00cfff;
-    text-shadow: 0 0 30px rgba(0,207,255,0.18);
+    margin: 100px 0 50px;
+    color: var(--cyan);
+    opacity: 0.9;
+    text-shadow: 0 0 20px rgba(0, 204, 255, 0.1);
 }
 
 /* ABOUT */
@@ -410,6 +440,26 @@ h2 {
     align-items: center;
 }
 
+/* Make the contact LinkedIn link match the "Envoyer" button sizing */
+.contact .contact-link {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 40px;
+    text-decoration: none;
+    color: var(--cyan);
+    background: transparent;
+    border: 1px solid rgba(0,255,255,0.12);
+    box-shadow: 0 0 8px rgba(0,204,255,0.06);
+    transition: all 0.25s ease;
+}
+
+.contact .contact-link:hover {
+    background: rgba(0,204,255,0.06);
+    box-shadow: 0 0 20px rgba(0,204,255,0.12);
+}
+
 .contact-submit {
     background: linear-gradient(90deg, #00cfff 60%, #ff4a7d 100%);
     color: #0a0a0a;
@@ -419,6 +469,8 @@ h2 {
     cursor: pointer;
     border-radius: 40px;
     font-weight: 700;
+    box-shadow: 0 0 12px #00cfff;
+    transition: all 0.4s ease;
 }
 
 .contact-submit:hover { background: linear-gradient(90deg, #00bfff 60%, #ff6a9d 100%); box-shadow: 0 0 30px rgba(0,255,255,0.08); }
@@ -444,11 +496,29 @@ footer {
     .avatar-cyber { width: 80px; height: 80px; }
 }
 
-
-/* Netrunner Mode — style rouge/vert */
+/* ==================== MODE NETRUNNER (rouge) ==================== */
 .netrunner-mode {
-    --primary-color: #ff1a1a;
-    --accent-color: #ff4c6e;
+    --cyan:         #ff1a1a;
+    --cyan-soft:    #ff3333;
+    --pink:         #ff4c6e;
+    --pink-soft:    #ff6b8a;
+    --border:       rgba(255, 26, 26, 0.3);
+    --matrix-color: rgba(255, 26, 26, 0.18);
+    --matrix-glow:  #ff1a1a;
+}
+
+.netrunner-mode .scanlines {
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 26, 26, 0.03) 2px,
+        rgba(255, 26, 26, 0.03) 4px
+    );
+}
+
+.netrunner-mode #matrix {
+    filter: hue-rotate(180deg) saturate(1.4);
 }
 
 .netrunner-mode .top-nav a {
@@ -457,14 +527,6 @@ footer {
 }
 
 .netrunner-mode body,
-.netrunner-mode .scanlines {
-    background: #000;
-}
-
-.netrunner-mode #matrix {
-    filter: hue-rotate(180deg) brightness(1.2);
-}
-
 .netrunner-mode .top-nav a:hover {
     background: rgba(255,26,26,0.18);
     color: #ff1a1a;
@@ -480,37 +542,30 @@ footer {
     background: linear-gradient(90deg, #ff1a1a 60%, #ff4c6e 100%);
     color: #fff;
     text-shadow: 0 0 12px #ff1a1a, 0 0 24px #ff4c6e;
-    box-shadow: 0 0 18px #ff1a1a, 0 0 32px #ff4c6e;
+    box-shadow: 0 0 16px #ff1a1a, 0 0 8px #ff4c6e;
     border: 2px solid #ff1a1a;
 }
 
 .netrunner-mode .btn-fill.btn-neon:hover {
     background: linear-gradient(90deg, #ff4c6e 60%, #ff1a1a 100%);
     color: #fff;
-    box-shadow: 0 0 40px #ff1a1a, 0 0 40px #ff4c6e;
     border-color: #ff4c6e;
 }
 
-.netrunner-mode .btn-outline:hover
-{
-    background: rgba(255,26,26,0.18);
+.netrunner-mode .btn-outline:hover {
+    background: rgba(255, 26, 26, 0.18);
     color: #ff1a1a;
     border-color: #ff1a1a;
-    box-shadow: 0 0 18px #ff1a1a, 0 0 32px #ff1a1a;
+}
+
+.netrunner-mode .btn-outline,
+.netrunner-mode .contact-buttons a {
+    color: #ff1a1a;
+    border-color: #ff1a1a;
 }
 
 .netrunner-mode .container {
     color: #ff4c6e;
-}
-
-.netrunner-mode .scanlines {
-    background: repeating-linear-gradient(
-        0deg,
-        rgba(255,0,0,0.05) 0px,
-        rgba(255,0,0,0.05) 2px,
-        transparent 2px,
-        transparent 6px
-    );
 }
 
 .netrunner-mode .about-meta {
@@ -541,13 +596,6 @@ footer {
     box-shadow: 0 0 40px #ff1a1a44, 0 4px 20px rgba(255,26,26,0.08);
 }
 
-.netrunner-mode .btn-outline,
-.netrunner-mode .contact-buttons a {
-    color: #ff1a1a;
-    border-color: #ff1a1a;
-    box-shadow: 0 0 12px #ff1a1a;
-}
-
 .netrunner-mode .project-card,
 .netrunner-mode .skill-column ul,
 .netrunner-mode .about-text ul {
@@ -556,6 +604,54 @@ footer {
 }
 
 .netrunner-mode .main-title {
-    text-shadow: 0 0 40px #ff1a1a, 0 0 80px #ff4c6e;
+    color: var(--primary-color, #ff1a1a);
+    text-shadow: 0 0 12px #ff1a1a, 0 0 30px #ff4c6e;
+    text-shadow: none;
 }
 
+.netrunner-mode .contact-submit {
+    background: linear-gradient(90deg, #ff4a7d 60%, #00cfff 100%);
+    color: #0a0a0a;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 40px;
+    font-weight: 700;
+    box-shadow: 0 0 12px #ff4a7d;
+    transition: all 0.4s ease;
+}
+
+.netrunner-mode .contact-submit:hover {
+    background: linear-gradient(90deg, #ff6a9d 60%, #00bfff 100%);
+    box-shadow: 0 0 30px rgba(0,255,255,0.08);
+}
+
+.netrunner-mode .contact input,
+.netrunner-mode .contact textarea {
+    border: 1px solid rgba(255,26,26,0.3);
+    color: #ff4c6e;
+}
+
+.netrunner-mode .contact-buttons a {
+    color: #ff4c6e;
+    border-color: #ff4c6e;
+}
+
+.netrunner-mode #boot-launch-btn:hover {
+    background: rgba(255,26,26,0.12);
+    box-shadow: 0 0 30px rgba(255,26,26,0.4);
+    transform: translateY(-2px) scale(1.02);
+    color: #fff;
+    border-color: #ff1a1a;
+}
+
+.netrunner-mode .contact-submit svg {
+    box-shadow: 0 0 10px rgba(255,26,26,0.28);
+}
+
+.netrunner-mode .contact-submit svg path,
+.netrunner-mode .contact-submit svg line,
+.netrunner-mode .contact-submit svg circle {
+    stroke: #ff1a1a !important;
+}
