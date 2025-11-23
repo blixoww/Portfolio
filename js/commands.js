@@ -35,9 +35,9 @@ df -h        - Capacité disque Arasaka OS
 uname -a     - Version système Arasaka OS 2077
 firewall     - Affiche état du firewall
 decrypt [file] - Décode un fichier chiffré pour le rendre lisible
-sudo         - "Nice try, choomba"
+sudo         - "Nice try"
 rm -rf /     - Non, t’es sérieux ?
-exit         - Quitte le terminal (si possible)
+exit         - Quitte le terminal
 neon         - Affiche un logo stylisé
 konami       - Code cheat`, 'cyan'),
 
@@ -50,16 +50,57 @@ Statut         : Disponible immédiatement`, 'cyan'),
 
     skills: () => printASCII(String.raw`
 COMPÉTENCES TECHNIQUES :
+Linux      ██████████
 Docker     ████████░░  
 CI/CD      ████████░░ 
 Kubernetes ██████░░░░ 
 Terraform  █████░░░░░ 
 Ansible    ████░░░░░░ `, 'red'),
 
-    scan: () => `Scan réseau recruteur... [██████████] 100%
-COMPATIBILITÉ MAXIMALE - EMBUCHE IMMÉDIATE RECOMMANDÉE`,
+scan: () => {
+    return new Promise(resolve => {
+        const steps = [
+            "[10%] Initialisation des modules de scan...",
+            "[25%] Analyse du réseau interne Arasaka...",
+            "[40%] Collecte des nœuds actifs...",
+            "[55%] Vérification des firewalls et IDS...",
+            "[70%] Scan des ports actifs...",
+            "[85%] Détection des protocoles internes...",
+            "[100%] Compilation du rapport..."
+        ];
 
-    htop: () => printASCII(String.raw`
+        let i = 0;
+
+        function nextStep() {
+            print(steps[i]);
+            i++;
+            if (i < steps.length) {
+                setTimeout(nextStep, 350);
+            } else {
+                setTimeout(() => {
+                    const result = String.raw`
+──────────────────────────────────────────────
+Nœuds actifs       : 12
+Agents connectés   : 34
+IA opérationnelles : 5
+Serveurs détectés  : ARASAKA-SRV01, ARASAKA-SRV02, DB-ACCESS
+Protocoles         : TCP/443, SSH/22, NETRUN-PROTOCOL
+Ports ouverts      : 22, 80, 443, 8080
+Firewall           : ACTIF
+Menaces            : AUCUNE (0 critique)
+──────────────────────────────────────────────
+[SCAN TERMINÉ] Accès réseau optimal.`;
+                    printASCII(result, 'cyan'); 
+                    resolve();
+                }, 300);
+            }
+        }
+
+        nextStep();
+    });
+},
+
+htop: () => printASCII(String.raw`
 PID   USER      CPU   MEM   COMMAND
 001   root      14%   22%   cyber-agent
 002   root      08%   05%   neural-net
@@ -84,12 +125,12 @@ PID   USER      CPU   MEM   COMMAND
 [FILE] access.db
 [FILE] secrets.enc`,
 
-    'df -h': () => `Filesystem      Size  Used Avail Use%
-ArasakaOS       500G  367G  133G  73%`,
+    'df -h': () => printASCII(String.raw `Filesystem      Size  Used Avail Use%
+ArasakaOS       500G  367G  133G  73%`, 'cyan'),
 
-    'uname -a': () => `ArasakaOS 2077 // Kernel 7.2.1-cyberpunk-x86_64`,
+    'uname -a': () => printASCII(String.raw`ArasakaOS 2077 // Kernel 7.2.1-cyberpunk-x86_64`, 'cyan'),
 
-    firewall: () => `[FIREWALL ACTIVE] Toutes les tentatives externes bloquées`,
+    firewall: () => printASCII(`Firewall Status: ACTIVE`, 'green'),
 
     cd: arg => arg ? `Navigation vers '${arg}'... [ACCESS GRANTED]` : `Erreur : dossier non spécifié`,
 

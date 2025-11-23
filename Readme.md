@@ -6,8 +6,6 @@ Ce projet est mon **portfolio professionnel**, présentant :
 - Une interface terminal interactive inspirée de Cyberpunk,
 - Mes projets, expériences et informations de contact.
 
----
-
 ## 🛠️ Technologies utilisées
 
 - **HTML**, **CSS**, **JavaScript**
@@ -15,8 +13,6 @@ Ce projet est mon **portfolio professionnel**, présentant :
 - Effet "Matrix" en canvas animé
 - Terminal simulé avec commandes personnalisées
 - Responsive adapté mobile / desktop
-
----
 
 ## 🧩 Fonctionnalités du terminal
 
@@ -27,8 +23,6 @@ Ce projet est mon **portfolio professionnel**, présentant :
 - Commandes systèmes simulées
 - Clear, reboot
 - Thème visuel Arasaka (Cyberpunk 2077)
-
----
 
 ## 📜 Licence
 
