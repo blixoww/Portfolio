@@ -32,5 +32,4 @@ Ce projet est mon **portfolio professionnel**, présentant :
 
 ## 📜 Licence
 
-Projet personnel — libre d’inspiration mais non destiné à un usage commercial ou industriel sans autorisation.
-
+MIT License - Libre d’utilisation et de modification
