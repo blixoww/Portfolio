@@ -192,6 +192,13 @@ body {
     margin: 20px auto;
 }
 
+.current.job {
+    font-size: 1.05rem;
+    color: #00cfff;
+    margin-top: 12px;
+    font-weight: 500;
+}
+
 /* Buttons */
 .contact-buttons {
     margin-top: 36px;
