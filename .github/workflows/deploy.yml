@@ -49,7 +49,7 @@ jobs:
             echo "::error::Handlers ou styles inline interdits (CSP)"; exit 1
           fi
 
-      - name: Build
+      - name: Bundle with Vite
         run: npm run build
 
       - name: Check build output
@@ -58,6 +58,31 @@ jobs:
             grep -q 'http-equiv="Content-Security-Policy"' "dist/$page.html" \
               || { echo "::error::CSP absente de $page.html"; exit 1; }
           done
+
+      - name: Package bundle
+        run: |
+          BUNDLE="portfolio-${GITHUB_SHA::7}.tar.gz"
+          tar -czf "$BUNDLE" -C dist .
+          sha256sum "$BUNDLE" > SHA256SUMS
+          {
+            echo "### Bundle \`$BUNDLE\`"
+            echo
+            echo "| Fichier | Taille |"
+            echo "|---|---|"
+            find dist -type f -printf '| %P | %s o |\n' | sort
+            echo
+            echo "Archive : $(du -h "$BUNDLE" | cut -f1) — SHA-256 \`$(cut -d' ' -f1 SHA256SUMS)\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload bundle
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: portfolio-bundle-${{ github.sha }}
+          path: |
+            portfolio-*.tar.gz
+            SHA256SUMS
+          if-no-files-found: error
+          retention-days: 14
 
       - name: Setup Pages
         if: github.event_name != 'pull_request'

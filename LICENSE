@@ -1,21 +1,13 @@
-MIT License
+Copyright (c) 2025-2026 Valentin Georges (blixoww). Tous droits réservés.
 
-Copyright (c) 2025 blixoww
+Le code source, les textes, le design et les contenus de ce dépôt sont la propriété
+exclusive de leur auteur. Aucune licence n'est accordée : toute reproduction,
+modification, distribution ou réutilisation, totale ou partielle, est interdite
+sans autorisation écrite préalable de l'auteur.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+La consultation du code sur GitHub est permise, conformément aux conditions
+d'utilisation de GitHub, sans que cela n'emporte de droit de réutilisation.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Exceptions — composants tiers, soumis à leur propre licence :
+- Polices Orbitron, Rajdhani et Share Tech Mono (src/assets/fonts/) :
+  SIL Open Font License 1.1, voir les fichiers OFL-*.txt correspondants.

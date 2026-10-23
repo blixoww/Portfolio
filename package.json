@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "description": "Portfolio de Valentin Georges — Ingénieur DevOps & Cloud",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "type": "module",
   "engines": {
     "node": ">=22.12.0"

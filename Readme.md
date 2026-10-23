@@ -58,4 +58,6 @@ npm run check     # validation HTML + build
 
 ## Licence
 
-MIT
+© 2025-2026 Valentin Georges — tous droits réservés. Le code est consultable mais ne
+peut être réutilisé sans autorisation (voir [LICENSE](LICENSE)). Les polices restent sous
+SIL Open Font License.
