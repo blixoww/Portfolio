@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta name="robots" content="noindex">
+  <meta name="theme-color" content="#050608">
+  <title>valentin@portfolio:~ — Netrunner terminal</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/share-tech-mono-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/terminal.css">
+  <script src="js/terminal.js" defer></script>
+</head>
+<body>
+  <div class="scanlines" aria-hidden="true"></div>
+  <main class="term-window">
+    <div class="term-bar">
+      <a class="term-close" href="index.html" aria-label="Fermer le terminal et revenir au portfolio"></a>
+      <h1 class="term-title">NETRUNNER // valentin@portfolio</h1>
+      <span class="term-tag" aria-hidden="true">ネットランナー</span>
+    </div>
+
+    <div class="term-screen" id="screen">
+      <div id="output" role="log" aria-live="polite" aria-label="Sortie du terminal"></div>
+      <form class="term-input-line" id="prompt-form" autocomplete="off">
+        <label class="term-prompt" for="cmd" id="prompt-label">valentin@portfolio:~$</label>
+        <input id="cmd" name="cmd" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" maxlength="200" enterkeyhint="send" autofocus>
+        <button class="visually-hidden" type="submit">Exécuter</button>
+      </form>
+    </div>
+  </main>
+  <noscript><p class="noscript">Ce terminal nécessite JavaScript. <a href="index.html">Retour au portfolio</a>.</p></noscript>
+</body>
+</html>
