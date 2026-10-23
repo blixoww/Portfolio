@@ -3,13 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'self'; img-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'">
   <meta name="robots" content="noindex">
   <title>404 — Page introuvable</title>
-  <!-- Chemins absolus : la 404 peut être servie depuis n'importe quelle URL du site -->
-  <link rel="icon" href="/Portfolio/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/Portfolio/css/main.css">
-  <script src="/Portfolio/js/theme.js"></script>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <script src="%BASE_URL%theme-init.js" vite-ignore></script>
 </head>
 <body>
   <main class="section">
@@ -19,7 +17,7 @@
       <pre class="term-card term-body"><code><span class="t-prompt">$</span> kubectl get page
 Error from server (NotFound): pages "<span class="t-str">cette-page</span>" not found</code></pre>
       <div class="hero-cta contact-cta">
-        <a class="btn btn-primary" href="/Portfolio/">Retour à l'accueil</a>
+        <a class="btn btn-primary" href="%BASE_URL%">Retour à l'accueil</a>
       </div>
     </div>
   </main>
