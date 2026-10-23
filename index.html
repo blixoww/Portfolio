@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <title>Valentin Georges — Ingénieur DevOps &amp; Cloud</title>
+  <meta name="description" content="Ingénieur DevOps & Cloud basé à Toulouse : Kubernetes (GKE), GCP, Terraform, CI/CD GitLab, GitOps et observabilité en production.">
+  <meta name="author" content="Valentin Georges">
+  <meta name="theme-color" content="#050608">
+  <meta name="color-scheme" content="dark">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:title" content="Valentin Georges — Ingénieur DevOps & Cloud">
+  <meta property="og:description" content="Kubernetes, GCP, Terraform, CI/CD et observabilité : des plateformes cloud-native automatisées, sécurisées et prêtes pour la production.">
+  <meta property="og:url" content="https://blixoww.github.io/Portfolio/">
+
+  <link rel="canonical" href="https://blixoww.github.io/Portfolio/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.json">
+  <link rel="preload" href="assets/fonts/rajdhani-600.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/orbitron-800.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="css/main.css">
+  <!-- Chargé de façon synchrone pour appliquer le thème avant le premier rendu -->
+  <script src="js/theme.js"></script>
+  <script src="js/main.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  <!-- Décor : pluie de katakana + scanlines (purement visuels) -->
+  <canvas id="rain" aria-hidden="true"></canvas>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Retour en haut de page">
+        <span class="brand-prompt" aria-hidden="true">&gt;_</span>
+        <span class="brand-name">BLIXOWW</span>
+      </a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#expertise">Expertise</a></li>
+          <li><a href="#experiences">Expériences</a></li>
+          <li><a href="#projets">Projets</a></li>
+          <li><a href="#formation">Formation</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" type="button" id="theme-toggle" aria-label="Basculer entre le mode Night City et le mode Arasaka">
+          <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn nav-toggle" type="button" id="nav-toggle" aria-controls="site-nav" aria-expanded="false" aria-label="Ouvrir le menu">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="contenu">
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="status-pill"><span class="status-dot" aria-hidden="true"></span>Statut : en poste <span class="sep" aria-hidden="true">//</span> Toulouse</p>
+          <h1 id="hero-title">
+            <span class="hero-name glitch" data-text="Valentin Georges">Valentin Georges</span>
+            <span class="hero-role">Ingénieur <span class="accent">DevOps &amp; Cloud</span></span>
+          </h1>
+          <p class="hero-lead">
+            Je conçois, automatise et exploite des plateformes cloud-native sur
+            <strong>GCP</strong> et <strong>Kubernetes</strong> : de l'infrastructure as code
+            jusqu'à l'observabilité en production, avec la sécurité intégrée dès la conception.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="#projets">Voir mes projets</a>
+            <a class="btn btn-ghost" href="https://www.linkedin.com/in/valentin-georges-14956a27b/" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+              LinkedIn
+            </a>
+            <a class="btn btn-ghost" href="https://github.com/blixoww" target="_blank" rel="noopener noreferrer">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.7 16 2.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg>
+              GitHub
+            </a>
+          </div>
+          <ul class="hero-stack" aria-label="Technologies principales">
+            <li>Linux</li><li>Terraform</li><li>GitLab CI</li><li>Kubernetes</li><li>GCP</li><li>Python</li>
+          </ul>
+        </div>
+
+        <figure class="term-card" aria-label="Profil résumé au format manifeste Kubernetes">
+          <div class="term-bar" aria-hidden="true">
+            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+            <span class="term-title">~/profile.yaml</span>
+            <span class="term-tag">ID-2077</span>
+          </div>
+<pre class="term-body"><code><span class="t-prompt">$</span> kubectl get engineer valentin -o yaml
+<span class="t-key">apiVersion</span>: people/v1
+<span class="t-key">kind</span>: Engineer
+<span class="t-key">metadata</span>:
+  <span class="t-key">name</span>: <span class="t-str">valentin-georges</span>
+  <span class="t-key">labels</span>:
+    <span class="t-key">location</span>: <span class="t-str">toulouse</span>
+    <span class="t-key">domain</span>: <span class="t-str">aerospace-defense</span>
+<span class="t-key">spec</span>:
+  <span class="t-key">role</span>: <span class="t-str">devops-cloud-engineer</span>
+  <span class="t-key">cloud</span>: [<span class="t-str">gcp</span>, <span class="t-str">aws</span>]
+  <span class="t-key">platform</span>: [<span class="t-str">kubernetes</span>, <span class="t-str">terraform</span>, <span class="t-str">gitops</span>]
+  <span class="t-key">languages</span>: [<span class="t-str">python</span>, <span class="t-str">go</span>, <span class="t-str">bash</span>, <span class="t-str">java</span>]
+<span class="t-key">status</span>:
+  <span class="t-key">phase</span>: <span class="t-ok">Running</span>
+  <span class="t-key">readiness</span>: <span class="t-ok">True</span><span class="t-cursor" aria-hidden="true"></span></code></pre>
+        </figure>
+      </div>
+    </section>
+
+    <!-- À PROPOS -->
+    <section class="section" id="apropos" aria-labelledby="apropos-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">01 · À propos<span class="kana" lang="ja" aria-hidden="true">プロフィール</span></p>
+          <h2 id="apropos-title">L'infrastructure comme produit</h2>
+        </header>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              Ingénieur DevOps spécialisé <strong>Cloud &amp; Kubernetes</strong>, j'interviens dans des
+              environnements exigeants de l'<strong>aéronautique, du spatial et de la défense</strong>.
+              Mon quotidien : faire tourner des plateformes GCP en production, les décrire en code et
+              les rendre observables.
+            </p>
+            <p>
+              Issu d'un parcours mêlant <strong>administration Linux</strong>,
+              <strong>sécurité des SI</strong> et <strong>data engineering</strong>, j'aborde chaque
+              sujet avec une double exigence : fiabilité du run et sécurité par défaut.
+            </p>
+          </div>
+          <ul class="principles">
+            <li class="principle panel reveal">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></svg>
+              <div>
+                <h3>Tout en code</h3>
+                <p>Terraform, Kustomize, Ansible, pipelines : une infrastructure versionnée, revue et reproductible.</p>
+              </div>
+            </li>
+            <li class="principle panel reveal">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <div>
+                <h3>Sécurité par défaut</h3>
+                <p>Moindre privilège IAM, Workload Identity, secrets managés, NetworkPolicies en refus par défaut.</p>
+              </div>
+            </li>
+            <li class="principle panel reveal">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              <div>
+                <h3>Production d'abord</h3>
+                <p>Monitoring, alerting et analyse de logs : diagnostiquer vite, corriger à la source, documenter.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="section section-alt" id="expertise" aria-labelledby="expertise-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">02 · Expertise<span class="kana" lang="ja" aria-hidden="true">スキル</span></p>
+          <h2 id="expertise-title">Compétences techniques</h2>
+          <p class="section-intro">Les outils que j'utilise au quotidien en production, regroupés par domaine.</p>
+        </header>
+
+        <div class="skills-grid">
+          <article class="skill-card skill-card-wide panel reveal">
+            <div class="skill-card-head">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17.5 19H7a5 5 0 1 1 1.1-9.9A6 6 0 0 1 19.5 11a4 4 0 0 1-2 8z"/></svg>
+              <h3>Cloud &amp; Orchestration</h3>
+            </div>
+            <ul class="chips">
+              <li class="chip chip-strong">Google Cloud (GCP)</li>
+              <li class="chip chip-strong">Kubernetes / GKE</li>
+              <li class="chip">Cloud SQL</li><li class="chip">Pub/Sub</li><li class="chip">Cloud Storage</li>
+              <li class="chip">Artifact Registry</li><li class="chip">Cloud Build</li><li class="chip">Secret Manager</li>
+              <li class="chip">VPC · Cloud NAT</li><li class="chip">API Gateway</li>
+              <li class="chip">Ingress · HPA</li><li class="chip">Helm</li><li class="chip">AWS</li>
+            </ul>
+          </article>
+
+          <article class="skill-card panel reveal">
+            <div class="skill-card-head">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+              <h3>Infrastructure as Code</h3>
+            </div>
+            <ul class="chips">
+              <li class="chip chip-strong">Terraform</li><li class="chip chip-strong">Kustomize</li>
+              <li class="chip">Ansible</li><li class="chip">State GCS distant</li><li class="chip">PRA</li>
+            </ul>
+          </article>
+
+          <article class="skill-card panel reveal">
+            <div class="skill-card-head">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="9" r="3"/><path d="M6 9v6M18 12a6 6 0 0 1-6 6H9"/></svg>
+              <h3>CI/CD &amp; GitOps</h3>
+            </div>
+            <ul class="chips">
+              <li class="chip chip-strong">GitLab CI</li><li class="chip chip-strong">ArgoCD</li>
+              <li class="chip">GitHub Actions</li><li class="chip">Jenkins</li><li class="chip">Docker</li>
+              <li class="chip">Nexus</li>
+            </ul>
+          </article>
+
+          <article class="skill-card panel reveal">
+            <div class="skill-card-head">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              <h3>Sécurité</h3>
+            </div>
+            <ul class="chips">
+              <li class="chip chip-strong">IAM · moindre privilège</li><li class="chip">Workload Identity</li>
+              <li class="chip">SSO · OIDC · SAML</li><li class="chip">NetworkPolicies</li>
+              <li class="chip">SonarQube (SAST)</li><li class="chip">Trivy</li><li class="chip">AppArmor</li>
+              <li class="chip">OpenSSH · OpenSSL</li><li class="chip">RGPD</li>
+            </ul>
+          </article>
+
+          <article class="skill-card panel reveal">
+            <div class="skill-card-head">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-6"/></svg>
+              <h3>Observabilité</h3>
+            </div>
+            <ul class="chips">
+              <li class="chip chip-strong">Prometheus</li><li class="chip chip-strong">Grafana</li>
+              <li class="chip">Cloud Monitoring</li><li class="chip">Cloud Logging</li>
+              <li class="chip">Zabbix</li><li class="chip">ELK</li><li class="chip">Splunk</li>
+            </ul>
+          </article>
+
+          <article class="skill-card panel reveal">
+            <div class="skill-card-head">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="7" rx="2"/><rect x="2" y="14" width="20" height="7" rx="2"/><path d="M6 6.5h.01M6 17.5h.01"/></svg>
+              <h3>Systèmes &amp; Virtualisation</h3>
+            </div>
+            <ul class="chips">
+              <li class="chip chip-strong">Linux</li><li class="chip">SLES 15</li><li class="chip">RHEL / Rocky</li>
+              <li class="chip">Debian / Ubuntu</li><li class="chip">systemd</li>
+              <li class="chip">Proxmox VE</li><li class="chip">VMware vSphere</li>
+            </ul>
+          </article>
+
+          <article class="skill-card panel reveal">
+            <div class="skill-card-head">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+              <h3>Réseau</h3>
+            </div>
+            <ul class="chips">
+              <li class="chip">TCP/IP</li><li class="chip">DNS</li><li class="chip">NAT · VLAN</li>
+              <li class="chip">Load balancing L4/L7</li><li class="chip">Nginx · HAProxy</li>
+              <li class="chip">iptables / nftables</li><li class="chip">CNI · kube-proxy</li>
+            </ul>
+          </article>
+
+          <article class="skill-card panel reveal">
+            <div class="skill-card-head">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m4 17 6-6-6-6M12 19h8"/></svg>
+              <h3>Développement</h3>
+            </div>
+            <ul class="chips">
+              <li class="chip chip-strong">Python</li><li class="chip chip-strong">Go</li><li class="chip chip-strong">Bash</li>
+              <li class="chip">Java</li><li class="chip">SQL · PostgreSQL</li><li class="chip">Git</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPÉRIENCES -->
+    <section class="section" id="experiences" aria-labelledby="experiences-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">03 · Parcours<span class="kana" lang="ja" aria-hidden="true">経歴</span></p>
+          <h2 id="experiences-title">Expériences</h2>
+        </header>
+
+        <ol class="timeline">
+          <li class="tl-item tl-current reveal">
+            <div class="tl-meta">
+              <time datetime="2026-09">Sept. 2026</time> — <span>aujourd'hui</span>
+            </div>
+            <div class="tl-body panel">
+              <h3>Ingénieur DevOps <span class="tl-company">· CELAD</span></h3>
+              <p class="tl-context">Mission Défense &amp; Spatial — Toulouse</p>
+              <ul>
+                <li>Administration de clusters <strong>Kubernetes GKE</strong> : workloads, Ingress, Services, ConfigMaps et Secrets.</li>
+                <li>Infrastructure as code <strong>Terraform / Kustomize</strong> et déploiements via <strong>GitLab CI</strong> et Artifact Registry.</li>
+                <li>Run <strong>N2/N3</strong> sur GCP : diagnostic d'incidents, Cloud Logging, dashboards et alerting Cloud Monitoring, Grafana.</li>
+                <li>Politiques <strong>IAM</strong> au moindre privilège, Workload Identity, ressources réseau (VPC, firewall, Cloud NAT) et Pub/Sub.</li>
+                <li>Pilotage technique d'intégrations <strong>SSO (OIDC, SAML)</strong> avec des fournisseurs d'identité externes.</li>
+              </ul>
+              <ul class="chips chips-sm" aria-label="Technologies">
+                <li class="chip">GKE</li><li class="chip">Terraform</li><li class="chip">GitLab CI</li><li class="chip">Cloud SQL</li><li class="chip">Python</li><li class="chip">Go</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="tl-item reveal">
+            <div class="tl-meta">
+              <time datetime="2026-04">Avr. 2026</time> — <time datetime="2026-09">Sept. 2026</time>
+            </div>
+            <div class="tl-body panel">
+              <h3>Ingénieur Système Linux &amp; DevOps <span class="tl-company">· LH&amp;TECH</span></h3>
+              <p class="tl-context">Mission chez Viveris dans l'aérospatial — Toulouse</p>
+              <ul>
+                <li>Administration et MCO de VMs <strong>SLES 15</strong> sous VMware ESXi et Proxmox VE.</li>
+                <li>Restauration de services critiques (rsyslog, SNMP, chrony, polkit) impactés par un durcissement <strong>AppArmor</strong>.</li>
+                <li>Automatisation Python / Bash, qualification IVQ et documentation technique en anglais.</li>
+              </ul>
+              <ul class="chips chips-sm" aria-label="Technologies">
+                <li class="chip">SLES 15</li><li class="chip">AppArmor</li><li class="chip">VMware</li><li class="chip">SonarQube</li><li class="chip">Docker</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="tl-item tl-current reveal">
+            <div class="tl-meta">
+              <time datetime="2026-02">Févr. 2026</time> — <span>aujourd'hui</span>
+            </div>
+            <div class="tl-body panel">
+              <h3>Ingénieur DevOps bénévole <span class="tl-company">· NELIXAIR</span></h3>
+              <p class="tl-context">Association aéronautique</p>
+              <ul>
+                <li>MCO d'un parc de VMs <strong>Debian</strong> : mises à jour, services, synchronisation NTP.</li>
+                <li>Déploiement de <strong>SonarQube</strong> conteneurisé (Docker Compose, PostgreSQL) derrière un reverse proxy Nginx en HTTPS.</li>
+                <li><strong>Terraform</strong> et <strong>Ansible</strong> au service d'un plan de reprise d'activité.</li>
+              </ul>
+              <ul class="chips chips-sm" aria-label="Technologies">
+                <li class="chip">Debian</li><li class="chip">Ansible</li><li class="chip">Nginx</li><li class="chip">Zabbix</li><li class="chip">Scrum</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="tl-item reveal">
+            <div class="tl-meta">
+              <time datetime="2023-09">Sept. 2023</time> — <time datetime="2024-10">Oct. 2024</time>
+            </div>
+            <div class="tl-body panel">
+              <h3>Alternant Sécurité des SI <span class="tl-company">· CADA</span></h3>
+              <ul>
+                <li>Pilotage d'un projet de mutualisation <strong>RGPD &amp; SSI</strong> : cadrage, coordination, conduite du changement.</li>
+                <li>Sensibilisation cybersécurité d'agents non techniques et cartographie des traitements.</li>
+                <li>Support N1 et automatisation de tâches d'administration en Bash.</li>
+              </ul>
+            </div>
+          </li>
+
+          <li class="tl-item reveal">
+            <div class="tl-meta">
+              <time datetime="2022-06">Juin 2022</time> — <time datetime="2022-08">Août 2022</time>
+            </div>
+            <div class="tl-body panel">
+              <h3>Stage Développeur &amp; DevOps</h3>
+              <ul>
+                <li>Application <strong>Java 17</strong> avec authentification sécurisée : hachage Argon2, validation des entrées, rate limiting anti-bruteforce.</li>
+                <li>CI GitLab / GitHub Actions, tests JUnit, build Gradle et conteneurisation Docker.</li>
+              </ul>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- PROJETS -->
+    <section class="section section-alt" id="projets" aria-labelledby="projets-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">04 · Réalisations<span class="kana" lang="ja" aria-hidden="true">プロジェクト</span></p>
+          <h2 id="projets-title">Projets</h2>
+        </header>
+
+        <article class="featured panel reveal" aria-labelledby="featured-title">
+          <div class="featured-text">
+            <p class="featured-tag">Projet phare · 2026</p>
+            <h3 id="featured-title">Plateforme applicative GCP 100 % Infrastructure as Code</h3>
+            <p>
+              Une plateforme complète provisionnée par Terraform, de la couche réseau au déploiement
+              applicatif, pensée pour la sécurité et l'exploitation.
+            </p>
+            <ul class="feature-list">
+              <li><strong>Réseau &amp; données :</strong> VPC dédié, cluster GKE, Cloud SQL PostgreSQL en IP privée, Cloud NAT. State Terraform distant sur GCS versionné avec verrouillage.</li>
+              <li><strong>Livraison :</strong> Cloud Build, Artifact Registry, Kustomize multi-environnements (base / overlays), GitOps avec ArgoCD.</li>
+              <li><strong>Sécurité :</strong> Workload Identity (zéro clé de service account), Secret Manager + External Secrets Operator, NetworkPolicies en refus par défaut.</li>
+              <li><strong>Observabilité :</strong> Cloud Logging et alerting Cloud Monitoring.</li>
+            </ul>
+          </div>
+
+          <div class="pipeline" role="img" aria-label="Chaîne de livraison : commit GitLab, build Cloud Build, image dans Artifact Registry, synchronisation ArgoCD, déploiement sur GKE avec Cloud SQL en IP privée">
+            <div class="pl-step"><span class="pl-num">1</span><span class="pl-label">git push</span><span class="pl-tool">GitLab CI</span></div>
+            <div class="pl-step"><span class="pl-num">2</span><span class="pl-label">build</span><span class="pl-tool">Cloud Build</span></div>
+            <div class="pl-step"><span class="pl-num">3</span><span class="pl-label">image</span><span class="pl-tool">Artifact Registry</span></div>
+            <div class="pl-step"><span class="pl-num">4</span><span class="pl-label">sync</span><span class="pl-tool">ArgoCD</span></div>
+            <div class="pl-step pl-target">
+              <span class="pl-num">5</span><span class="pl-label">run</span><span class="pl-tool">GKE</span>
+              <span class="pl-sub">Cloud SQL · IP privée</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="project-grid">
+          <article class="project-card panel reveal">
+            <h3>Pipeline GitOps &amp; API Java</h3>
+            <p>API REST Spring Boot conteneurisée, déployée automatiquement sur Kubernetes via GitHub Actions et ArgoCD.</p>
+            <ul class="chips chips-sm" aria-label="Technologies"><li class="chip">Spring Boot</li><li class="chip">Docker</li><li class="chip">Kubernetes</li><li class="chip">ArgoCD</li></ul>
+            <a class="card-link" href="https://github.com/blixoww/task-tracker-api" target="_blank" rel="noopener noreferrer">Code source<span class="visually-hidden"> de Pipeline GitOps &amp; API Java</span> <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="project-card panel reveal">
+            <h3>Stack DevOps</h3>
+            <p>Chaîne CI/CD Jenkins vers Kubernetes, avec métriques Prometheus et dashboards Grafana.</p>
+            <ul class="chips chips-sm" aria-label="Technologies"><li class="chip">Jenkins</li><li class="chip">Kubernetes</li><li class="chip">Prometheus</li><li class="chip">Grafana</li></ul>
+            <a class="card-link" href="https://github.com/blixoww/devops-stack" target="_blank" rel="noopener noreferrer">Code source<span class="visually-hidden"> de Stack DevOps</span> <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="project-card panel reveal">
+            <h3>Mod Minecraft</h3>
+            <p>Mod Minecraft (Forge, Java 17) — 12 biomes, 26 créatures, générateur Python, CI/CD et releases GitHub.</p>
+            <ul class="chips chips-sm" aria-label="Technologies"><li class="chip">Minecraft</li><li class="chip">Forge</li><li class="chip">Java 17</li><li class="chip">Terraform</li></ul>
+            <a class="card-link" href="https://github.com/blixoww/netheryx" target="_blank" rel="noopener noreferrer">Code source<span class="visually-hidden"> de Mod Minecraft</span> <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="project-card panel reveal">
+            <h3>Infrastructure AWS en Terraform</h3>
+            <p>Socle AWS reproductible : VPC, instances EC2, buckets S3 et rôles IAM.</p>
+            <ul class="chips chips-sm" aria-label="Technologies"><li class="chip">Terraform</li><li class="chip">AWS</li><li class="chip">IAM</li></ul>
+            <a class="card-link" href="https://github.com/blixoww/Terraform-AWS-Sample" target="_blank" rel="noopener noreferrer">Code source<span class="visually-hidden"> de Infrastructure AWS en Terraform</span> <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="project-card panel reveal">
+            <h3>Chatbot IA local</h3>
+            <p>Assistant IA 100 % local avec Ollama, application desktop Tauri (Rust) et interface React.</p>
+            <ul class="chips chips-sm" aria-label="Technologies"><li class="chip">Ollama</li><li class="chip">Rust</li><li class="chip">React</li><li class="chip">TypeScript</li></ul>
+            <a class="card-link" href="https://github.com/blixoww/chatbot" target="_blank" rel="noopener noreferrer">Code source<span class="visually-hidden"> de Chatbot IA local</span> <span aria-hidden="true">→</span></a>
+          </article>
+
+          <article class="project-card panel reveal">
+            <h3>Ce portfolio</h3>
+            <p>Site statique sans dépendance tierce, CSP stricte, pluie de katakana en canvas, deux thèmes (Night City / Arasaka) et déploiement GitHub Pages.</p>
+            <ul class="chips chips-sm" aria-label="Technologies"><li class="chip">HTML</li><li class="chip">CSS</li><li class="chip">JavaScript</li><li class="chip">GitHub Actions</li></ul>
+            <a class="card-link" href="https://github.com/blixoww/Portfolio" target="_blank" rel="noopener noreferrer">Code source<span class="visually-hidden"> de ce portfolio</span> <span aria-hidden="true">→</span></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORMATION -->
+    <section class="section" id="formation" aria-labelledby="formation-title">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">05 · Formation<span class="kana" lang="ja" aria-hidden="true">教育</span></p>
+          <h2 id="formation-title">Diplôme &amp; certifications</h2>
+        </header>
+        <div class="edu-grid">
+          <article class="edu-card edu-main panel reveal">
+            <p class="edu-kind">Master · 2024</p>
+            <h3>Gouvernance des Données</h3>
+            <p class="edu-school">Université d'Avignon</p>
+            <p>Data engineering, bases de données, scripting Python, monitoring ELK, réseaux, virtualisation, Linux, RGPD et sécurité.</p>
+          </article>
+          <article class="edu-card panel reveal">
+            <p class="edu-kind">Certification · 2025</p>
+            <h3>AWS Cloud Practitioner Essentials</h3>
+          </article>
+          <article class="edu-card panel reveal">
+            <p class="edu-kind">Certification · 2025</p>
+            <h3>Docker Essentials</h3>
+          </article>
+          <article class="edu-card panel reveal">
+            <p class="edu-kind">Langues</p>
+            <h3>Français · Anglais</h3>
+            <p>Documentation technique et échanges professionnels en anglais.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="container contact-inner reveal">
+        <p class="eyebrow">06 · Contact<span class="kana" lang="ja" aria-hidden="true">連絡</span></p>
+        <h2 id="contact-title">Discutons de votre plateforme</h2>
+        <p class="section-intro">
+          Une opportunité, un projet cloud ou simplement l'envie d'échanger sur Kubernetes ?
+          Le plus simple est de me contacter sur LinkedIn.
+        </p>
+        <div class="hero-cta contact-cta">
+          <a class="btn btn-primary" href="https://www.linkedin.com/in/valentin-georges-14956a27b/" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2zM4 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4z"/></svg>
+            Me contacter sur LinkedIn
+          </a>
+          <a class="btn btn-ghost" href="https://github.com/blixoww" target="_blank" rel="noopener noreferrer">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.4 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.7 16 2.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"/></svg>
+            Voir mon GitHub
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© <span id="year">2026</span> Valentin Georges <span class="sep" aria-hidden="true">//</span> Fait main, sans framework ni traceur <span class="kana" lang="ja" aria-hidden="true">ナイトシティ</span></p>
+      <a class="term-link" href="terminal.html" title="Ouvrir le terminal interactif">
+        <span aria-hidden="true">&gt;_</span> terminal
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
