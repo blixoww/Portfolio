@@ -56,11 +56,12 @@ const FILES = {
   ].join('\n'),
   'skills.yaml': [
     'cloud:         [gcp, gke, cloud-sql, pub-sub, artifact-registry, aws]',
-    'iac:           [terraform, kustomize, ansible, helm]',
+    'k8s-tools:     [kubectl, k9s, helm, kustomize]',
+    'iac:           [terraform, kustomize, ansible]',
     'cicd:          [gitlab-ci, github-actions, argocd, jenkins, docker]',
-    'security:      [iam-least-privilege, workload-identity, oidc, saml, sonarqube, trivy]',
+    'security:      [iam-least-privilege, workload-identity, oidc, saml, sonarqube, trivy, vault]',
     'observability: [prometheus, grafana, cloud-monitoring, zabbix, elk]',
-    'systems:       [sles, rhel, debian, systemd, apparmor, proxmox, vsphere]',
+    'systems:       [sles, rhel, fedora, debian, systemd, apparmor, proxmox, vsphere]',
     'languages:     [java, python, bash, sql, go (bases)]',
   ].join('\n'),
   'experience.log': [
@@ -120,6 +121,7 @@ const HELP = [
   ['experience', 'parcours professionnel'],
   ['projects', 'projets sélectionnés'],
   ['contact', 'me joindre'],
+  ['k9s', 'vue du cluster, façon k9s'],
   ['ls / cd / cat / pwd', 'explorer le système de fichiers'],
   ['history', 'historique des commandes'],
   ['clear', "effacer l'écran (ou Ctrl+L)"],
@@ -213,6 +215,64 @@ const COMMANDS = {
       return;
     }
     print({ text: 'Essayez : kubectl get pods', cls: 'c-muted' });
+  },
+
+  k9s() {
+    // Reprend la mise en page de k9s : en-tête (contexte, raccourcis, logo) puis vue des pods.
+    const WIDTH = 78;
+    const firstLine = output.children.length;
+    const info = [
+      ['Context', 'night-city'], ['Cluster', 'k3s-homelab'], ['User', 'valentin'],
+      ['K9s Rev', 'v0.50.x'], ['K8s Rev', 'v1.33'], ['CPU', '12%'], ['MEM', '38%'],
+    ];
+    const keys = [['0', 'all'], ['1', 'portfolio'], ['d', 'Describe'], ['l', 'Logs'], ['s', 'Shell'], ['?', 'Help']];
+    const logo = [
+      ' ____  __.________       ',
+      '|    |/ _/   __   \\______',
+      '|      < \\____    /  ___/',
+      '|    |  \\   /    /\\___ \\ ',
+      '|____|__ \\ /____//____  >',
+      '        \\/            \\/ ',
+      '',
+    ];
+    info.forEach(([k, v], i) => {
+      const key = keys[i];
+      print(
+        { text: `${k}:`.padEnd(9), cls: 'c-k9s-orange' }, v.padEnd(14),
+        ...(key ? [{ text: `<${key[0]}>`.padEnd(5), cls: 'c-blue' }, { text: key[1].padEnd(12), cls: 'c-muted' }] : ['                 ']),
+        { text: logo[i], cls: 'c-k9s-orange' },
+      );
+    });
+
+    const pods = [
+      ['portfolio', 'portfolio-web-6d9f7c5b8-x2kqp', '1/1', 'Running', '0', '42d'],
+      ['portfolio', 'katakana-rain-7f9b6-m4n5p', '1/1', 'Running', '0', '42d'],
+      ['argocd', 'argocd-server-5c8d7-q8w2z', '1/1', 'Running', '0', '90d'],
+      ['vault', 'vault-0', '1/1', 'Running', '0', '30d'],
+      ['monitoring', 'prometheus-0', '2/2', 'Running', '1', '90d'],
+      ['monitoring', 'grafana-6b7c4-z9x4k', '1/1', 'Running', '0', '90d'],
+      ['netrunner', 'curiosity-7b8c9d-k2l8f', '1/1', 'Running', '0', '∞'],
+    ];
+    const cols = [12, 30, 7, 10, 10, 6];
+    const row = (cells) => cells.map((c, i) => String(c).padEnd(cols[i])).join('');
+    const title = ` Pods(all)[${pods.length}] `;
+    const side = Math.floor((WIDTH - 2 - title.length) / 2);
+
+    print('');
+    print({ text: `+${'-'.repeat(side)}`, cls: 'c-blue' }, { text: title, cls: 'c-k9s-title' },
+      { text: `${'-'.repeat(WIDTH - 2 - side - title.length)}+`, cls: 'c-blue' });
+    print({ text: '|', cls: 'c-blue' }, { text: ` ${row(['NAMESPACE', 'NAME', 'READY', 'STATUS', 'RESTARTS', 'AGE'])}`.padEnd(WIDTH - 2), cls: 'c-k9s-head' }, { text: '|', cls: 'c-blue' });
+    pods.forEach((cells, i) => {
+      print({ text: '|', cls: 'c-blue' }, { text: ` ${row(cells)}`.padEnd(WIDTH - 2), cls: i === 0 ? 'c-k9s-selected' : 'c-k9s-row' }, { text: '|', cls: 'c-blue' });
+    });
+    print({ text: `+${'-'.repeat(WIDTH - 2)}+`, cls: 'c-blue' });
+    print({ text: ' <pod> ', cls: 'c-k9s-crumb' });
+
+    // Regroupe la vue dans un bloc défilant : sur mobile, les 78 colonnes ne tiennent pas en largeur.
+    const view = document.createElement('div');
+    view.className = 'k9s-view';
+    view.append(...[...output.children].slice(firstLine));
+    output.appendChild(view);
   },
 
   terraform(args) {

@@ -34,6 +34,7 @@ html, body { height: 100%; }
 body {
   margin: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
   padding: clamp(0px, 3vw, 32px);
   background:
@@ -58,6 +59,7 @@ body {
   display: flex;
   flex-direction: column;
   width: min(1000px, 100%);
+  min-width: 0;
   height: min(700px, 100%);
   border: 1px solid var(--border);
   border-top: 0;
@@ -121,6 +123,16 @@ body {
 .c-ok { color: var(--ok); }
 .c-err { color: var(--err); }
 .c-muted { color: var(--muted); }
+
+/* Commande k9s : reprend les couleurs de l'interface de k9s */
+.c-k9s-orange { color: #ffa94d; }
+.c-k9s-title { color: #ffa94d; font-weight: 700; }
+.c-k9s-head { color: #f5f5f5; font-weight: 700; }
+.c-k9s-row { color: #7dd3fc; }
+.c-k9s-selected { color: #050608; background: #7dd3fc; }
+.k9s-view { overflow-x: auto; }
+#output .k9s-view .line { white-space: pre; }
+.c-k9s-crumb { display: inline-block; margin-top: 4px; color: #050608; background: #ffa94d; }
 
 #output a { color: var(--yellow); }
 

@@ -397,6 +397,15 @@ a:hover { color: var(--accent-text); }
   color: var(--accent-text);
   background: color-mix(in srgb, var(--accent) 12%, transparent);
 }
+.chips-label {
+  margin: 18px 0 8px;
+  font-family: var(--font-mono);
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+.chips-label::before { content: "> "; color: var(--accent-2); }
 .chips-sm .chip { font-size: .74rem; padding: 2px 8px; }
 
 /* ---------- Glitch (titre principal) ---------- */
